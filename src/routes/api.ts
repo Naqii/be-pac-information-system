@@ -37,5 +37,16 @@ router.get(
   }]
  */
 );
+router.post(
+  '/auth/activation',
+  authController.activation
+  /*
+  #swagger.tags = ['Auth']
+  #swagger.requestBody = {
+    required: true,
+    schema: {$ref: "#/components/schemas/ActivationRequest"}
+  }
+ */
+);
 
 export default router;

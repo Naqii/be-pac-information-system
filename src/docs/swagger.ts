@@ -38,6 +38,10 @@ const doc = {
         password: 'Member2025!',
         confirmPassword: 'Member2025!',
       },
+
+      ActivationRequest: {
+        code: 'abcrandom',
+      },
     },
   },
 };

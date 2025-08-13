@@ -83,4 +83,24 @@ export default {
       response.error(res, error, 'failed get user data');
     }
   },
+
+  async activation(req: Request, res: Response) {
+    try {
+      const { code } = req.body as { code: string };
+      const user = await UserModel.findOneAndUpdate(
+        {
+          activationCode: code,
+        },
+        {
+          isActive: true,
+        },
+        {
+          new: true,
+        }
+      );
+      response.success(res, user, 'success activation user');
+    } catch (error) {
+      response.error(res, error, 'failed activation user');
+    }
+  },
 };

@@ -28,7 +28,7 @@ async function init() {
     });
 
     app.use('/api', router);
-    docs(app)
+    docs(app);
 
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
