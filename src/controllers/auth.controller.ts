@@ -72,15 +72,15 @@ export default {
       response.error(res, error, 'failed login user');
     }
   },
-  
+
   async me(req: IReqUser, res: Response) {
     try {
-        const user = req.user;
-        const result = await UserModel.findById(user?.id);
+      const user = req.user;
+      const result = await UserModel.findById(user?.id);
 
-        response.success(res, result, 'success get user data');
+      response.success(res, result, 'success get user data');
     } catch (error) {
-        response.error(res, error, 'failed get user data');
+      response.error(res, error, 'failed get user data');
     }
-  }
+  },
 };

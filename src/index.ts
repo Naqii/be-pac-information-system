@@ -4,6 +4,7 @@ import db from './utils/database';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import docs from './docs/route';
 
 async function init() {
   try {
@@ -27,6 +28,7 @@ async function init() {
     });
 
     app.use('/api', router);
+    docs(app)
 
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
