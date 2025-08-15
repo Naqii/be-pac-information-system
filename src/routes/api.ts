@@ -5,6 +5,7 @@ import aclMiddleware from '../middleware/acl.middleware';
 import mediaMiddleware from '../middleware/media.middleware';
 import { ROLES } from '../utils/constant';
 import mediaController from '../controllers/media.controller';
+import regionController from '../controllers/region.controller';
 
 const router = express.Router();
 
@@ -66,7 +67,7 @@ router.post(
   /*
     #swagger.tags = ['Media']
     #swagger.security = [{
-      "bearerAuth": {}
+      "bearerAuth": []
     }]
     #swagger.requestBody = {
       required: true,
@@ -86,7 +87,6 @@ router.post(
     }
   */
 );
-
 router.post(
   '/media/multiple-upload',
   [
@@ -98,7 +98,7 @@ router.post(
   /*
     #swagger.tags = ['Media']
     #swagger.security = [{
-      "bearerAuth": {}
+      "bearerAuth": []
     }]
     #swagger.requestBody = {
       required: true,
@@ -121,7 +121,6 @@ router.post(
     }
   */
 );
-
 router.delete(
   '/media/remove',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.KK])],
@@ -129,7 +128,7 @@ router.delete(
   /*
     #swagger.tags = ['Media']
     #swagger.security = [{
-      "bearerAuth": {}
+      "bearerAuth": []
     }]
     #swagger.requestBody = {
       required: true,
@@ -138,6 +137,43 @@ router.delete(
       }
     }
    */
+);
+
+//Region Schema
+router.get(
+  '/regions',
+  regionController.getAllProvinces
+  /*
+    #swagger.tags = ['Regions']
+  */
+);
+router.get(
+  '/regions/:id/province',
+  regionController.getProvince
+  /*
+    #swagger.tags = ['Regions']
+  */
+);
+router.get(
+  '/regions/:id/district',
+  regionController.getDistrict
+  /*
+    #swagger.tags = ['Regions']
+  */
+);
+router.get(
+  '/regions/:id/village',
+  regionController.getVillage
+  /*
+    #swagger.tags = ['Regions']
+  */
+);
+router.get(
+  '/regions-search',
+  regionController.findByCity
+  /*
+    #swagger.tags = ['Regions']
+  */
 );
 
 export default router;
