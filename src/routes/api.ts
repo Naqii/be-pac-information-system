@@ -38,7 +38,7 @@ router.get(
   /*
   #swagger.tags = ['Auth']
   #swagger.security = [{
-    "bearerAuth": string = [],
+    "bearerAuth": [],
   }]
  */
 );
@@ -133,11 +133,11 @@ router.delete(
     }]
     #swagger.requestBody = {
       required: true,
-      content: {
+      schema: {
         $ref: "#/components/schemas/RemoveMediaRequest"
       }
     }
-  */
+   */
 );
 
 export default router;

@@ -42,6 +42,10 @@ const doc = {
       ActivationRequest: {
         code: 'abcrandom',
       },
+
+      RemoveMediaRequest: {
+        fileUrl: 'http://res.cloudinary.com/dzfxaqjrp/image/upload/v1755250296/example.png'
+      }
     },
   },
 };

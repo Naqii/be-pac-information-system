@@ -18,7 +18,9 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -44,7 +46,9 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -70,7 +74,9 @@
     },
     "/auth/me": {
       "get": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -95,7 +101,9 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -121,7 +129,9 @@
     },
     "/media/single-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -162,7 +172,9 @@
     },
     "/media/multiple-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -206,7 +218,9 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -230,7 +244,16 @@
         "requestBody": {
           "required": true,
           "content": {
-            "$ref": "#/components/schemas/RemoveMediaRequest"
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveMediaRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveMediaRequest"
+              }
+            }
           }
         }
       }
@@ -298,6 +321,18 @@
         },
         "xml": {
           "name": "ActivationRequest"
+        }
+      },
+      "RemoveMediaRequest": {
+        "type": "object",
+        "properties": {
+          "fileUrl": {
+            "type": "string",
+            "example": "http://res.cloudinary.com/dzfxaqjrp/image/upload/v1755250296/example.png"
+          }
+        },
+        "xml": {
+          "name": "RemoveMediaRequest"
         }
       }
     }
