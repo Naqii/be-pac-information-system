@@ -7,17 +7,17 @@ import { CLIENT_HOST, EMAIL_SMTP_USER } from '../utils/env';
 
 const validatePassword = Yup.string()
   .required()
-  .min(6, 'Password mus be at least 6 characters')
+  .min(6, 'Password must be at least 6 characters')
   .test(
     'at-least-one-uppercase-letter',
-    'Contain at least one uppercase letter',
+    'Must contain at least one uppercase letter',
     (value) => {
       if (!value) return false;
       const regex = /^(?=.*[A-Z])/;
       return regex.test(value);
     }
   )
-  .test('at-least-one-number', 'Contain at least one numbers', (value) => {
+  .test('at-least-one-number', 'Must contain at least one number', (value) => {
     if (!value) return false;
     const regex = /^(?=.*[\d])/;
     return regex.test(value);
@@ -25,7 +25,7 @@ const validatePassword = Yup.string()
 
 const validateConfirmPassword = Yup.string().oneOf(
   [Yup.ref('password'), ''],
-  'Pasword not matched'
+  'Password not matched'
 );
 
 export const USER_MODEL_NAME = 'User';
@@ -122,7 +122,7 @@ UserSchema.post('save', async function (doc, next) {
       fullName: user.fullName,
       email: user.email,
       createdAt: user.createdAt,
-      activationLink: `${CLIENT_HOST}/auth/activation?code=${user.activationCode}`
+      activationLink: `${CLIENT_HOST}/auth/activation?code=${user.activationCode}`,
     });
 
     await sendMail({
@@ -136,7 +136,7 @@ UserSchema.post('save', async function (doc, next) {
   } finally {
     next();
   }
-})
+});
 
 UserSchema.methods.toJSON = function () {
   const user = this.toObject();
