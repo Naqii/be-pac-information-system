@@ -1,21 +1,21 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const villageSchema = new mongoose.Schema({
   id: { type: Number, index: true },
   name: String,
-}).index({ name: "text" });
+}).index({ name: 'text' });
 
 const districtSchema = new mongoose.Schema({
   id: { type: Number, index: true },
   name: String,
   villages: [villageSchema],
-}).index({ name: "text" });
+}).index({ name: 'text' });
 
 const regencySchema = new mongoose.Schema({
   id: { type: Number, index: true },
   name: String,
   districts: [districtSchema],
-}).index({ name: "text" });
+}).index({ name: 'text' });
 
 const provinceSchema = new mongoose.Schema(
   {
@@ -28,38 +28,38 @@ const provinceSchema = new mongoose.Schema(
       findByCity(name: string) {
         return this.aggregate([
           {
-            $unwind: "$regencies",
+            $unwind: '$regencies',
           },
           {
             $match: {
               $or: [
                 {
-                  "regencies.name": { $regex: name, $options: "i" },
+                  'regencies.name': { $regex: name, $options: 'i' },
                 },
               ],
             },
           },
           {
             $project: {
-              id: "$regencies.id",
-              name: "$regencies.name",
+              id: '$regencies.id',
+              name: '$regencies.name',
             },
           },
           {
             $replaceRoot: {
               newRoot: {
-                name: "$name",
-                id: "$id",
-                province: "$province",
-                regency: "$regency",
-                district: "$district",
+                name: '$name',
+                id: '$id',
+                province: '$province',
+                regency: '$regency',
+                district: '$district',
               },
             },
           },
         ]);
       },
       getAllProvinces() {
-        return this.find({}).select("name id -_id");
+        return this.find({}).select('name id -_id');
       },
       getProvince(id: number) {
         return this.aggregate([
@@ -68,15 +68,15 @@ const provinceSchema = new mongoose.Schema(
           },
           {
             $project: {
-              name: "$name",
-              id: "$id",
+              name: '$name',
+              id: '$id',
               regencies: {
                 $map: {
-                  input: "$regencies",
-                  as: "regencies",
+                  input: '$regencies',
+                  as: 'regencies',
                   in: {
-                    id: "$$regencies.id",
-                    name: "$$regencies.name",
+                    id: '$$regencies.id',
+                    name: '$$regencies.name',
                   },
                 },
               },
@@ -85,9 +85,9 @@ const provinceSchema = new mongoose.Schema(
           {
             $replaceRoot: {
               newRoot: {
-                name: "$name",
-                id: "$id",
-                regencies: "$regencies",
+                name: '$name',
+                id: '$id',
+                regencies: '$regencies',
               },
             },
           },
@@ -96,28 +96,28 @@ const provinceSchema = new mongoose.Schema(
       getRegency(id: number) {
         return this.aggregate([
           {
-            $unwind: "$regencies",
+            $unwind: '$regencies',
           },
           {
             $match: {
-              "regencies.id": id,
+              'regencies.id': id,
             },
           },
           {
             $project: {
-              name: "$regencies.name",
-              id: "$regencies.id",
+              name: '$regencies.name',
+              id: '$regencies.id',
               province: {
-                id: "$id",
-                name: "$name",
+                id: '$id',
+                name: '$name',
               },
               districts: {
                 $map: {
-                  input: "$regencies.districts",
-                  as: "districts",
+                  input: '$regencies.districts',
+                  as: 'districts',
                   in: {
-                    id: "$$districts.id",
-                    name: "$$districts.name",
+                    id: '$$districts.id',
+                    name: '$$districts.name',
                   },
                 },
               },
@@ -126,10 +126,10 @@ const provinceSchema = new mongoose.Schema(
           {
             $replaceRoot: {
               newRoot: {
-                name: "$name",
-                id: "$id",
-                province: "$province",
-                districts: "$districts",
+                name: '$name',
+                id: '$id',
+                province: '$province',
+                districts: '$districts',
               },
             },
           },
@@ -138,35 +138,35 @@ const provinceSchema = new mongoose.Schema(
       getDistrict(id: number) {
         return this.aggregate([
           {
-            $unwind: "$regencies",
+            $unwind: '$regencies',
           },
           {
-            $unwind: "$regencies.districts",
+            $unwind: '$regencies.districts',
           },
           {
             $match: {
-              "regencies.districts.id": id,
+              'regencies.districts.id': id,
             },
           },
           {
             $project: {
-              name: "$regencies.districts.name",
-              id: "$regencies.districts.id",
+              name: '$regencies.districts.name',
+              id: '$regencies.districts.id',
               province: {
-                id: "$id",
-                name: "$name",
+                id: '$id',
+                name: '$name',
               },
               regency: {
-                id: "$regencies.id",
-                name: "$regencies.name",
+                id: '$regencies.id',
+                name: '$regencies.name',
               },
               villages: {
                 $map: {
-                  input: "$regencies.districts.villages",
-                  as: "villages",
+                  input: '$regencies.districts.villages',
+                  as: 'villages',
                   in: {
-                    id: "$$villages.id",
-                    name: "$$villages.name",
+                    id: '$$villages.id',
+                    name: '$$villages.name',
                   },
                 },
               },
@@ -175,11 +175,11 @@ const provinceSchema = new mongoose.Schema(
           {
             $replaceRoot: {
               newRoot: {
-                name: "$name",
-                id: "$id",
-                province: "$province",
-                regency: "$regency",
-                villages: "$villages",
+                name: '$name',
+                id: '$id',
+                province: '$province',
+                regency: '$regency',
+                villages: '$villages',
               },
             },
           },
@@ -188,45 +188,45 @@ const provinceSchema = new mongoose.Schema(
       getVillage(id: number) {
         return this.aggregate([
           {
-            $unwind: "$regencies",
+            $unwind: '$regencies',
           },
           {
-            $unwind: "$regencies.districts",
+            $unwind: '$regencies.districts',
           },
           {
-            $unwind: "$regencies.districts.villages",
+            $unwind: '$regencies.districts.villages',
           },
           {
             $match: {
-              "regencies.districts.villages.id": id,
+              'regencies.districts.villages.id': id,
             },
           },
           {
             $project: {
-              name: "$regencies.districts.villages.name",
-              id: "$regencies.districts.villages.id",
+              name: '$regencies.districts.villages.name',
+              id: '$regencies.districts.villages.id',
               district: {
-                id: "$regencies.districts.id",
-                name: "$regencies.districts.name",
+                id: '$regencies.districts.id',
+                name: '$regencies.districts.name',
               },
               regency: {
-                id: "$regencies.id",
-                name: "$regencies.name",
+                id: '$regencies.id',
+                name: '$regencies.name',
               },
               province: {
-                id: "$id",
-                name: "$name",
+                id: '$id',
+                name: '$name',
               },
             },
           },
           {
             $replaceRoot: {
               newRoot: {
-                name: "$name",
-                id: "$id",
-                province: "$province",
-                regency: "$regency",
-                district: "$district",
+                name: '$name',
+                id: '$id',
+                province: '$province',
+                regency: '$regency',
+                district: '$district',
               },
             },
           },
@@ -234,7 +234,7 @@ const provinceSchema = new mongoose.Schema(
       }, // kelurahan
     },
   }
-).index({ name: "text" });
+).index({ name: 'text' });
 
-const RegionModel = mongoose.model("Region", provinceSchema);
+const RegionModel = mongoose.model('Region', provinceSchema);
 export default RegionModel;

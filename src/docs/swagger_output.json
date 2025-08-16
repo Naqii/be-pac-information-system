@@ -149,7 +149,7 @@
         },
         "security": [
           {
-            "bearerAuth": {}
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -192,7 +192,7 @@
         },
         "security": [
           {
-            "bearerAuth": {}
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -238,7 +238,7 @@
         },
         "security": [
           {
-            "bearerAuth": {}
+            "bearerAuth": []
           }
         ],
         "requestBody": {
@@ -361,6 +361,225 @@
           }
         }
       }
+    },
+    "/teachers": {
+      "post": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeachersRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeachersRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "bidang",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pendidikan",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/teachers/{id}": {
+      "get": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeachersRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeachersRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/teachers/{slug}/slug": {
+      "get": {
+        "tags": [
+          "Teachers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "components": {
@@ -437,6 +656,38 @@
         },
         "xml": {
           "name": "RemoveMediaRequest"
+        }
+      },
+      "CreateTeachersRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "sunan baihaqi"
+          },
+          "noTelp": {
+            "type": "string",
+            "example": "080123456789"
+          },
+          "bidang": {
+            "type": "string",
+            "example": "Tilawati 1-2"
+          },
+          "pendidikan": {
+            "type": "string",
+            "example": "S1 - Teknik Informatika"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2024-12-12 00:00:00"
+          },
+          "slug": {
+            "type": "string",
+            "example": "sunan-baihaqi"
+          }
+        },
+        "xml": {
+          "name": "CreateTeachersRequest"
         }
       }
     }

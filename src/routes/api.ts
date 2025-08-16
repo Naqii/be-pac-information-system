@@ -6,6 +6,7 @@ import mediaMiddleware from '../middleware/media.middleware';
 import { ROLES } from '../utils/constant';
 import mediaController from '../controllers/media.controller';
 import regionController from '../controllers/region.controller';
+import teachersController from '../controllers/teachers.controller';
 
 const router = express.Router();
 
@@ -176,4 +177,89 @@ router.get(
   */
 );
 
+//Teachers Schema
+router.post(
+  '/teachers',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  teachersController.create
+  /*
+    #swagger.tags = ['Teachers']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateTeachersRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/teachers',
+  teachersController.findAll
+  /*
+    #swagger.tags = ['Teachers']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+    #swagger.parameters['bidang'] = {
+    in: 'query',
+    type: 'string'
+    }
+    #swagger.parameters['pendidikan'] = {
+    in: 'query',
+    type: 'string',
+    }
+  */
+);
+router.get(
+  '/teachers/:id',
+  teachersController.findOne
+  /*
+    #swagger.tags = ['Teachers']
+  */
+);
+router.put(
+  '/teachers/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  teachersController.update
+  /*
+    #swagger.tags = ['Teachers']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateTeachersRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/teachers/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  teachersController.remove
+  /*
+    #swagger.tags = ['Teachers']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+router.get(
+  '/teachers/:slug/slug',
+  teachersController.findOneBySlug
+  /*
+    #swagger.tags = ['Teachers']
+  */
+)
 export default router;

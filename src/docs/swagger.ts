@@ -44,8 +44,18 @@ const doc = {
       },
 
       RemoveMediaRequest: {
-        fileUrl: 'http://res.cloudinary.com/dzfxaqjrp/image/upload/v1755250296/example.png'
-      }
+        fileUrl:
+          'http://res.cloudinary.com/dzfxaqjrp/image/upload/v1755250296/example.png',
+      },
+
+      CreateTeachersRequest: {
+        name: 'sunan baihaqi',
+        noTelp: '080123456789',
+        bidang: 'Tilawati 1-2',
+        pendidikan: 'S1 - Teknik Informatika',
+        startDate: '2024-12-12 00:00:00',
+        slug: 'sunan-baihaqi',
+      },
     },
   },
 };
