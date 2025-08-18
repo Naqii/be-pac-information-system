@@ -57,43 +57,48 @@ export default {
   },
   async findOne(req: IReqUser, res: Response) {
     try {
-        const { id } = req.params;
+      const { id } = req.params;
 
-        if (!isValidObjectId(id)) return response.notFound(res, 'failed find learning data');
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed find learning data');
 
-        const result = await LearningModel.findById(id);
+      const result = await LearningModel.findById(id);
 
-        response.success(res, result, 'success find one learning data');
+      response.success(res, result, 'success find one learning data');
     } catch (error) {
-        response.error(res, error, 'failed to find learning data');
+      response.error(res, error, 'failed to find learning data');
     }
   },
   async update(req: IReqUser, res: Response) {
     try {
-        const { id } = req.params;
+      const { id } = req.params;
 
-        if (!isValidObjectId(id)) return response.notFound(res, 'failed to update learning data');
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed to update learning data');
 
-        const result = await LearningModel.findByIdAndUpdate(id, req.body, { new: true });
+      const result = await LearningModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+      });
 
-        if (!result) return response.notFound(res, 'data not found');
+      if (!result) return response.notFound(res, 'data not found');
 
-        response.success(res, result, 'success to update learning data');
+      response.success(res, result, 'success to update learning data');
     } catch (error) {
-        response.error(res, error, ' failed to update learning data');
+      response.error(res, error, 'failed to update learning data');
     }
   },
   async remove(req: IReqUser, res: Response) {
     try {
-        const { id } = req.params;
+      const { id } = req.params;
 
-        if (!isValidObjectId(id)) return response.notFound(res, 'failed to remove learning data');
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed to remove learning data');
 
-        const result = await LearningModel.findByIdAndDelete(id);
+      const result = await LearningModel.findByIdAndDelete(id);
 
-        response.success(res, result, 'success to remove learning data');
+      response.success(res, result, 'success to remove learning data');
     } catch (error) {
-        response.error(res, error, 'failed to remove learning data');
+      response.error(res, error, 'failed to remove learning data');
     }
-  }
+  },
 };

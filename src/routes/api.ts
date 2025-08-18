@@ -8,6 +8,7 @@ import mediaController from '../controllers/media.controller';
 import regionController from '../controllers/region.controller';
 import teachersController from '../controllers/teachers.controller';
 import learningController from '../controllers/learning.controller';
+import violationController from '../controllers/violation.controller';
 
 const router = express.Router();
 
@@ -329,6 +330,77 @@ router.delete(
   learningController.remove
   /*
     #swagger.tags = ['Learning']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+
+//Students Schema
+router.post(
+  '/violation',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN])],
+  violationController.create
+  /*
+    #swagger.tags = ['Violation']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateViolationRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/violation',
+  violationController.findAll
+  /*
+    #swagger.tags = ['Violation']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/violation/:id',
+  violationController.findOne
+  /*
+    #swagger.tags = ['Violation']
+  */
+);
+router.put(
+  '/violation/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  violationController.update
+  /*
+    #swagger.tags = ['Violation']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateViolationRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/violation/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  violationController.remove
+  /*
+    #swagger.tags = ['Violation']
     #swagger.security = [{
       "bearerAuth": []
     }]

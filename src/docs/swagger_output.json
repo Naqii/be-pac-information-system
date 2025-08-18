@@ -18,9 +18,7 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -46,9 +44,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -74,9 +70,7 @@
     },
     "/auth/me": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -101,9 +95,7 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -129,9 +121,7 @@
     },
     "/media/single-upload": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -172,9 +162,7 @@
     },
     "/media/multiple-upload": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -218,9 +206,7 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -260,9 +246,7 @@
     },
     "/regions": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "responses": {
           "default": {
@@ -273,9 +257,7 @@
     },
     "/regions/{id}/province": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -296,9 +278,7 @@
     },
     "/regions/{id}/district": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -319,9 +299,7 @@
     },
     "/regions/{id}/village": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -342,9 +320,7 @@
     },
     "/regions-search": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -364,9 +340,7 @@
     },
     "/teachers": {
       "post": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -404,9 +378,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -456,9 +428,7 @@
     },
     "/teachers/{id}": {
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -477,9 +447,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -525,9 +493,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -560,9 +526,7 @@
     },
     "/teachers/{slug}/slug": {
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -583,9 +547,7 @@
     },
     "/learning": {
       "post": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -623,9 +585,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -661,9 +621,7 @@
     },
     "/learning/{id}": {
       "get": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -682,9 +640,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -730,9 +686,179 @@
         }
       },
       "delete": {
-        "tags": [
-          "Learning"
+        "tags": ["Learning"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/violation": {
+      "post": {
+        "tags": ["Violation"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateViolationRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateViolationRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Violation"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/violation/{id}": {
+      "get": {
+        "tags": ["Violation"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": ["Violation"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateViolationRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateViolationRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -890,6 +1016,30 @@
         },
         "xml": {
           "name": "CreateLearningRequest"
+        }
+      },
+      "CreateViolationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Keterlambatan"
+          },
+          "description": {
+            "type": "string",
+            "example": "Keterlambatan mengikuti pengajian rutin"
+          },
+          "judgeBy": {
+            "type": "string",
+            "example": "689feb50a2aa01a0f645a3b1"
+          },
+          "point": {
+            "type": "string",
+            "example": "10"
+          }
+        },
+        "xml": {
+          "name": "CreateViolationRequest"
         }
       }
     }

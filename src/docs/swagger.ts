@@ -62,6 +62,13 @@ const doc = {
         teacher: '689feb50a2aa01a0f645a3b1',
         description: 'Tilawati 2 full',
       },
+
+      CreateViolationRequest: {
+        name: 'Keterlambatan',
+        description: 'Keterlambatan mengikuti pengajian rutin',
+        judgeBy: '689feb50a2aa01a0f645a3b1',
+        point: '10',
+      },
     },
   },
 };
