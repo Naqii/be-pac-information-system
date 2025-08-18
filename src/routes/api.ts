@@ -7,6 +7,7 @@ import { ROLES } from '../utils/constant';
 import mediaController from '../controllers/media.controller';
 import regionController from '../controllers/region.controller';
 import teachersController from '../controllers/teachers.controller';
+import learningController from '../controllers/learning.controller';
 
 const router = express.Router();
 
@@ -261,5 +262,76 @@ router.get(
   /*
     #swagger.tags = ['Teachers']
   */
-)
+);
+
+//Learning Schema
+router.post(
+  '/learning',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN])],
+  learningController.create
+  /*
+    #swagger.tags = ['Learning']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateLearningRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/learning',
+  learningController.findAll
+  /*
+    #swagger.tags = ['Learning']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/learning/:id',
+  learningController.findOne
+  /*
+    #swagger.tags = ['Learning']
+  */
+);
+router.put(
+  '/learning/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  learningController.update
+  /*
+    #swagger.tags = ['Learning']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateLearningRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/learning/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  learningController.remove
+  /*
+    #swagger.tags = ['Learning']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
 export default router;

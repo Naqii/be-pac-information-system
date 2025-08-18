@@ -25,8 +25,9 @@ export default {
         let query: FilterQuery<TypeTeacher> = {};
 
         if (filter.search) query.$text = { $search: filter.search };
-        if (filter.bidang) query.bidang = new RegExp(filter.bidang, "i");
-        if (filter.pendidikan) query.pendidikan = new RegExp(filter.pendidikan, "i");
+        if (filter.bidang) query.bidang = new RegExp(filter.bidang, 'i');
+        if (filter.pendidikan)
+          query.pendidikan = new RegExp(filter.pendidikan, 'i');
 
         return query;
       };

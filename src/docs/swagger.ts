@@ -56,6 +56,12 @@ const doc = {
         startDate: '2024-12-12 00:00:00',
         slug: 'sunan-baihaqi',
       },
+
+      CreateLearningRequest: {
+        name: 'Tilawati 2',
+        teacher: '689feb50a2aa01a0f645a3b1',
+        description: 'Tilawati 2 full',
+      },
     },
   },
 };
