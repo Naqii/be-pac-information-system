@@ -10,6 +10,7 @@ import teachersController from '../controllers/teachers.controller';
 import learningController from '../controllers/learning.controller';
 import violationController from '../controllers/violation.controller';
 import classController from '../controllers/class.controller';
+import parentController from '../controllers/parent.controller';
 
 const router = express.Router();
 
@@ -491,6 +492,77 @@ router.get(
   classController.findOneBySlug
   /*
     #swagger.tags = ['Class']
+  */
+);
+
+//Parent Scheme
+router.post(
+  '/parent',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN])],
+  parentController.create
+  /*
+    #swagger.tags = ['Parent']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateParentRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/parent',
+  parentController.findAll
+  /*
+    #swagger.tags = ['Parent']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/parent/:id',
+  parentController.findOne
+  /*
+    #swagger.tags = ['Parent']
+  */
+);
+router.put(
+  '/parent/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  parentController.update
+  /*
+    #swagger.tags = ['Parent']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateParentRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/parent/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  parentController.remove
+  /*
+    #swagger.tags = ['Parent']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
   */
 );
 export default router;

@@ -70,11 +70,20 @@ const doc = {
       },
 
       CreateClassRequest: {
-        name: "pegon bacaan",
-        teacherBy: "689feb50a2aa01a0f645a3b1",
-        learning: "68a298226bb188e5dd124b80",
+        name: 'pegon bacaan',
+        teacherBy: '689feb50a2aa01a0f645a3b1',
+        learning: '68a298226bb188e5dd124b80',
+      },
 
-      }
+      CreateParentRequest: {
+        name: 'Sunan Baihaqi',
+        noTlp: '080123456789',
+        poss: 'Rukyah',
+        location: {
+          region: 3374070003,
+          address: 'Jl Mulawarmman III',
+        },
+      },
     },
   },
 };

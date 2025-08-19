@@ -1,5 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
+import { LEARNING_MODEL_NAME } from './learning.model';
+import { TEACHER_MODEL_NAME } from './teachers.model';
 
 export const CLASS_MODEL_NAME = 'Class';
 
@@ -33,12 +35,12 @@ const ClassSchema = new Schema<Class>(
     teacherBy: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'Teacher',
+      ref: TEACHER_MODEL_NAME,
     },
     learning: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'Learning',
+      ref: LEARNING_MODEL_NAME,
     },
     slug: {
       type: Schema.Types.String,

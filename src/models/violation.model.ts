@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
+import { TEACHER_MODEL_NAME } from './teachers.model';
 
 //Pelanggaran
 export const VIOLATION_MODEL_NAME = 'Violation';
@@ -37,7 +38,7 @@ const ViolationSchema = new Schema<Violation>(
     judgeBy: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'Teacher',
+      ref: TEACHER_MODEL_NAME,
     },
     point: {
       type: Schema.Types.String,

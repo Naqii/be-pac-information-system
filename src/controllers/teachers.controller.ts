@@ -13,7 +13,7 @@ export default {
   async create(req: IReqUser, res: Response) {
     try {
       const payload = { ...req.body, createdBy: req.user?.id } as TypeTeacher;
-      
+
       let baseSlug = formatSlug(payload.name);
       let slug = baseSlug;
       payload.slug = slug;
