@@ -7,11 +7,24 @@ import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
 import uploader from '../utils/uploader';
+import { formatSlug } from '../utils/formatSlug';
 
 export default {
   async create(req: IReqUser, res: Response) {
     try {
       const payload = { ...req.body, createdBy: req.user?.id } as TypeTeacher;
+      
+      let baseSlug = formatSlug(payload.name);
+      let slug = baseSlug;
+      payload.slug = slug;
+
+      let counter = 1;
+      while (await TeacherModel.findOne({ slug })) {
+        slug = `${baseSlug}-${counter++}`;
+      }
+
+      payload.slug = slug;
+
       await teacherDTO.validate(payload);
       const result = await TeacherModel.create(payload);
       response.success(res, result, 'success create a teacher data');

@@ -54,7 +54,6 @@ const doc = {
         bidang: 'Tilawati 1-2',
         pendidikan: 'S1 - Teknik Informatika',
         startDate: '2024-12-12 00:00:00',
-        slug: 'sunan-baihaqi',
       },
 
       CreateLearningRequest: {
@@ -69,6 +68,13 @@ const doc = {
         judgeBy: '689feb50a2aa01a0f645a3b1',
         point: '10',
       },
+
+      CreateClassRequest: {
+        name: "pegon bacaan",
+        teacherBy: "689feb50a2aa01a0f645a3b1",
+        learning: "68a298226bb188e5dd124b80",
+
+      }
     },
   },
 };

@@ -9,6 +9,7 @@ import regionController from '../controllers/region.controller';
 import teachersController from '../controllers/teachers.controller';
 import learningController from '../controllers/learning.controller';
 import violationController from '../controllers/violation.controller';
+import classController from '../controllers/class.controller';
 
 const router = express.Router();
 
@@ -336,7 +337,7 @@ router.delete(
   */
 );
 
-//Students Schema
+//Violation Schema
 router.post(
   '/violation',
   [authMiddleware, aclMiddleware([ROLES.ADMIN])],
@@ -404,6 +405,92 @@ router.delete(
     #swagger.security = [{
       "bearerAuth": []
     }]
+  */
+);
+
+//Class Scheme
+router.post(
+  '/class',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  classController.create
+  /*
+    #swagger.tags = ['Class']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateClassRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/class',
+  classController.findAll
+  /*
+    #swagger.tags = ['Class']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+    #swagger.parameters['bidang'] = {
+    in: 'query',
+    type: 'string'
+    }
+    #swagger.parameters['pendidikan'] = {
+    in: 'query',
+    type: 'string',
+    }
+  */
+);
+router.get(
+  '/class/:id',
+  classController.findOne
+  /*
+    #swagger.tags = ['Class']
+  */
+);
+router.put(
+  '/class/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  classController.update
+  /*
+    #swagger.tags = ['Class']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateClassRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/class/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  classController.remove
+  /*
+    #swagger.tags = ['Class']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+router.get(
+  '/class/:slug/slug',
+  classController.findOneBySlug
+  /*
+    #swagger.tags = ['Class']
   */
 );
 export default router;

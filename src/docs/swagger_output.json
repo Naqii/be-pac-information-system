@@ -18,7 +18,9 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -44,7 +46,9 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -70,7 +74,9 @@
     },
     "/auth/me": {
       "get": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -95,7 +101,9 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -121,7 +129,9 @@
     },
     "/media/single-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -162,7 +172,9 @@
     },
     "/media/multiple-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -206,7 +218,9 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -246,7 +260,9 @@
     },
     "/regions": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -257,7 +273,9 @@
     },
     "/regions/{id}/province": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -278,7 +296,9 @@
     },
     "/regions/{id}/district": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -299,7 +319,9 @@
     },
     "/regions/{id}/village": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -320,7 +342,9 @@
     },
     "/regions-search": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -340,7 +364,9 @@
     },
     "/teachers": {
       "post": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -378,7 +404,9 @@
         }
       },
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -428,7 +456,9 @@
     },
     "/teachers/{id}": {
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -447,7 +477,9 @@
         }
       },
       "put": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -493,7 +525,9 @@
         }
       },
       "delete": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -526,7 +560,9 @@
     },
     "/teachers/{slug}/slug": {
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -547,7 +583,9 @@
     },
     "/learning": {
       "post": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -585,7 +623,9 @@
         }
       },
       "get": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -621,7 +661,9 @@
     },
     "/learning/{id}": {
       "get": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -640,7 +682,9 @@
         }
       },
       "put": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -686,7 +730,9 @@
         }
       },
       "delete": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -719,7 +765,9 @@
     },
     "/violation": {
       "post": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -757,7 +805,9 @@
         }
       },
       "get": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -793,7 +843,9 @@
     },
     "/violation/{id}": {
       "get": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -812,7 +864,9 @@
         }
       },
       "put": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -858,7 +912,9 @@
         }
       },
       "delete": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -887,6 +943,225 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/class": {
+      "post": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClassRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClassRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "bidang",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pendidikan",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/class/{id}": {
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClassRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClassRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/class/{slug}/slug": {
+      "get": {
+        "tags": [
+          "Class"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     }
   },
@@ -988,10 +1263,6 @@
           "startDate": {
             "type": "string",
             "example": "2024-12-12 00:00:00"
-          },
-          "slug": {
-            "type": "string",
-            "example": "sunan-baihaqi"
           }
         },
         "xml": {
@@ -1040,6 +1311,26 @@
         },
         "xml": {
           "name": "CreateViolationRequest"
+        }
+      },
+      "CreateClassRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "pegon bacaan"
+          },
+          "teacherBy": {
+            "type": "string",
+            "example": "689feb50a2aa01a0f645a3b1"
+          },
+          "learning": {
+            "type": "string",
+            "example": "68a298226bb188e5dd124b80"
+          }
+        },
+        "xml": {
+          "name": "CreateClassRequest"
         }
       }
     }

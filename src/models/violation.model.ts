@@ -1,4 +1,3 @@
-import { name } from 'ejs';
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
 
