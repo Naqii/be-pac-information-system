@@ -13,8 +13,6 @@ export const classDTO = Yup.object({
   learning: Yup.string().required(),
   createdBy: Yup.string().required(),
   slug: Yup.string(),
-  createdAt: Yup.string(),
-  updateAt: Yup.string(),
 });
 
 export type TypeClass = Yup.InferType<typeof classDTO>;
@@ -24,6 +22,7 @@ export interface Class
   teacherBy: ObjectId;
   learning: ObjectId;
   createdBy: ObjectId;
+  createdAt: string;
 }
 
 const ClassSchema = new Schema<Class>(

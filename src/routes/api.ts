@@ -1,9 +1,9 @@
 import express from 'express';
+import { ROLES } from '../utils/constant';
 import authController from '../controllers/auth.controller';
 import authMiddleware from '../middleware/auth.middleware';
 import aclMiddleware from '../middleware/acl.middleware';
 import mediaMiddleware from '../middleware/media.middleware';
-import { ROLES } from '../utils/constant';
 import mediaController from '../controllers/media.controller';
 import regionController from '../controllers/region.controller';
 import teachersController from '../controllers/teachers.controller';
@@ -11,6 +11,7 @@ import learningController from '../controllers/learning.controller';
 import violationController from '../controllers/violation.controller';
 import classController from '../controllers/class.controller';
 import parentController from '../controllers/parent.controller';
+import studentController from '../controllers/student.controller';
 
 const router = express.Router();
 
@@ -560,6 +561,77 @@ router.delete(
   parentController.remove
   /*
     #swagger.tags = ['Parent']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+
+//Student Scheme
+router.post(
+  '/student',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN])],
+  studentController.create
+  /*
+    #swagger.tags = ['Student']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateStudentRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/student',
+  studentController.findAll
+  /*
+    #swagger.tags = ['Student']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/student/:id',
+  studentController.findOne
+  /*
+    #swagger.tags = ['Student']
+  */
+);
+router.put(
+  '/student/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  studentController.update
+  /*
+    #swagger.tags = ['Student']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateStudentRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/student/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  studentController.remove
+  /*
+    #swagger.tags = ['Student']
     #swagger.security = [{
       "bearerAuth": []
     }]

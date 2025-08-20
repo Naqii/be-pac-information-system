@@ -7,7 +7,6 @@ const Schema = mongoose.Schema;
 
 export const teacherDTO = Yup.object({
   name: Yup.string().required(),
-  picture: Yup.string(),
   startDate: Yup.string().required(),
   endDate: Yup.string(),
   noTelp: Yup.string().required(),
@@ -15,14 +14,14 @@ export const teacherDTO = Yup.object({
   pendidikan: Yup.string().required(),
   createdBy: Yup.string().required(),
   slug: Yup.string(),
-  updatedAt: Yup.string(),
-  createdAt: Yup.string(),
 });
 
 export type TypeTeacher = Yup.InferType<typeof teacherDTO>;
 
 export interface Teacher extends Omit<TypeTeacher, 'createdBy'> {
   createdBy: ObjectId;
+  picture: string;
+  createdAt?: string;
 }
 
 const TeacherSchema = new Schema<Teacher>(

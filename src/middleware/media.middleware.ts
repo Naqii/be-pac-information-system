@@ -1,4 +1,3 @@
-import { sign } from 'jsonwebtoken';
 import multer from 'multer';
 
 const storage = multer.memoryStorage();

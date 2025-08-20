@@ -13,7 +13,6 @@ export const violationDTO = Yup.object({
   judgeBy: Yup.string().required(),
   point: Yup.string().required(),
   createdBy: Yup.string().required(),
-  createdAt: Yup.string(),
   updateAt: Yup.string(),
 });
 
@@ -23,6 +22,7 @@ export interface Violation
   extends Omit<TypeViolation, 'judgeBy' | 'createdBy'> {
   judgeBy: ObjectId;
   createdBy: ObjectId;
+  createdAt: string;
 }
 
 const ViolationSchema = new Schema<Violation>(

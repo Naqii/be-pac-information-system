@@ -8,8 +8,6 @@ export const parentDTO = Yup.object({
   noTlp: Yup.string().required(),
   poss: Yup.string().required(),
   createdBy: Yup.string().required(),
-  createdAt: Yup.string(),
-  updateAt: Yup.string(),
   location: Yup.object()
     .shape({
       region: Yup.number(),
@@ -22,6 +20,7 @@ export type TypeParent = Yup.InferType<typeof parentDTO>;
 
 export interface Parent extends Omit<TypeParent, 'createdBy'> {
   createdBy: ObjectId;
+  createdAt: string;
 }
 
 const Schema = mongoose.Schema;

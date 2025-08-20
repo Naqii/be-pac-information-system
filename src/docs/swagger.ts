@@ -84,6 +84,18 @@ const doc = {
           address: 'Jl Mulawarmman III',
         },
       },
+
+      CreateStudentRequest: {
+        name: "Sunan Bukhori",
+        noTlp: "080123456789",
+        parent: "68a4800ca398cedf12d93f62",
+        class: "68a44b81a3997dce4bcd467d",
+        startDate: "2024-12-12 00:00:00",
+        location: {
+          region: 3374070003,
+          address: "Jl Mulawarmman Selatan"
+        }
+      }
     },
   },
 };

@@ -11,14 +11,13 @@ export const learningDTO = Yup.object({
   teacher: Yup.string().required(),
   description: Yup.string().required(),
   createdBy: Yup.string().required(),
-  createdAt: Yup.string(),
-  updateAt: Yup.string(),
 });
 
 export type TypeLearning = Yup.InferType<typeof learningDTO>;
 
 export interface Learning extends Omit<TypeLearning, 'createdBy' | 'teacher'> {
   createdBy: ObjectId;
+  createdAt: string;
   teacher: ObjectId;
 }
 

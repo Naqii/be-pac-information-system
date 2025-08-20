@@ -1373,6 +1373,188 @@
           }
         ]
       }
+    },
+    "/student": {
+      "post": {
+        "tags": [
+          "Student"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/student/{id}": {
+      "get": {
+        "tags": [
+          "Student"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Student"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStudentRequest"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Student"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1574,6 +1756,47 @@
         },
         "xml": {
           "name": "CreateParentRequest"
+        }
+      },
+      "CreateStudentRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Sunan Bukhori"
+          },
+          "noTlp": {
+            "type": "string",
+            "example": "080123456789"
+          },
+          "parent": {
+            "type": "string",
+            "example": "68a4800ca398cedf12d93f62"
+          },
+          "class": {
+            "type": "string",
+            "example": "68a44b81a3997dce4bcd467d"
+          },
+          "startDate": {
+            "type": "string",
+            "example": "2024-12-12 00:00:00"
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "region": {
+                "type": "number",
+                "example": 3374070003
+              },
+              "address": {
+                "type": "string",
+                "example": "Jl Mulawarmman Selatan"
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "CreateStudentRequest"
         }
       }
     }
