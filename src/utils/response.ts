@@ -72,6 +72,16 @@ export default {
     });
   },
 
+  conflict(res: Response, message: string = 'conflict duplicated data') {
+    res.status(409).json({
+      meta: {
+        status: 409,
+        message,
+      },
+      data: null,
+    });
+  },
+
   unauthorized(res: Response, message: string = 'unauthorized') {
     res.status(403).json({
       meta: {

@@ -1,8 +1,8 @@
-import { FilterQuery, isValidObjectId } from "mongoose";
-import StudentModel, { studentDTO, TypeStudent } from "../models/student.model";
-import { IReqUser } from "../utils/interface";
-import response from "../utils/response";
-import { Response } from "express";
+import { FilterQuery, isValidObjectId } from 'mongoose';
+import StudentModel, { studentDTO, TypeStudent } from '../models/student.model';
+import { IReqUser } from '../utils/interface';
+import response from '../utils/response';
+import { Response } from 'express';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -99,4 +99,4 @@ export default {
       response.error(res, error, 'failed to delete student');
     }
   },
-}
+};

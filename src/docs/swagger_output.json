@@ -18,9 +18,7 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -46,9 +44,7 @@
     },
     "/auth/login": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -74,9 +70,7 @@
     },
     "/auth/me": {
       "get": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "parameters": [
           {
@@ -101,9 +95,7 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
@@ -129,9 +121,7 @@
     },
     "/media/single-upload": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -172,9 +162,7 @@
     },
     "/media/multiple-upload": {
       "post": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -218,9 +206,7 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": [
-          "Media"
-        ],
+        "tags": ["Media"],
         "description": "",
         "parameters": [
           {
@@ -260,9 +246,7 @@
     },
     "/regions": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "responses": {
           "default": {
@@ -273,9 +257,7 @@
     },
     "/regions/{id}/province": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -296,9 +278,7 @@
     },
     "/regions/{id}/district": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -319,9 +299,7 @@
     },
     "/regions/{id}/village": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -342,9 +320,7 @@
     },
     "/regions-search": {
       "get": {
-        "tags": [
-          "Regions"
-        ],
+        "tags": ["Regions"],
         "description": "",
         "parameters": [
           {
@@ -364,9 +340,7 @@
     },
     "/teachers": {
       "post": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -404,9 +378,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -456,9 +428,7 @@
     },
     "/teachers/{id}": {
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -477,9 +447,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -525,9 +493,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -560,9 +526,7 @@
     },
     "/teachers/{slug}/slug": {
       "get": {
-        "tags": [
-          "Teachers"
-        ],
+        "tags": ["Teachers"],
         "description": "",
         "parameters": [
           {
@@ -583,9 +547,7 @@
     },
     "/learning": {
       "post": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -623,9 +585,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -661,9 +621,7 @@
     },
     "/learning/{id}": {
       "get": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -682,9 +640,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -730,9 +686,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Learning"
-        ],
+        "tags": ["Learning"],
         "description": "",
         "parameters": [
           {
@@ -765,9 +719,7 @@
     },
     "/violation": {
       "post": {
-        "tags": [
-          "Violation"
-        ],
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -805,9 +757,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Violation"
-        ],
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -843,9 +793,7 @@
     },
     "/violation/{id}": {
       "get": {
-        "tags": [
-          "Violation"
-        ],
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -864,9 +812,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Violation"
-        ],
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -912,9 +858,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Violation"
-        ],
+        "tags": ["Violation"],
         "description": "",
         "parameters": [
           {
@@ -947,9 +891,7 @@
     },
     "/class": {
       "post": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -987,9 +929,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -1039,9 +979,7 @@
     },
     "/class/{id}": {
       "get": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -1060,9 +998,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -1108,9 +1044,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -1143,9 +1077,7 @@
     },
     "/class/{slug}/slug": {
       "get": {
-        "tags": [
-          "Class"
-        ],
+        "tags": ["Class"],
         "description": "",
         "parameters": [
           {
@@ -1166,9 +1098,7 @@
     },
     "/parent": {
       "post": {
-        "tags": [
-          "Parent"
-        ],
+        "tags": ["Parent"],
         "description": "",
         "parameters": [
           {
@@ -1206,9 +1136,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Parent"
-        ],
+        "tags": ["Parent"],
         "description": "",
         "parameters": [
           {
@@ -1272,9 +1200,7 @@
     },
     "/parent/{id}": {
       "get": {
-        "tags": [
-          "Parent"
-        ],
+        "tags": ["Parent"],
         "description": "",
         "parameters": [
           {
@@ -1293,9 +1219,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Parent"
-        ],
+        "tags": ["Parent"],
         "description": "",
         "parameters": [
           {
@@ -1341,9 +1265,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Parent"
-        ],
+        "tags": ["Parent"],
         "description": "",
         "parameters": [
           {
@@ -1376,9 +1298,7 @@
     },
     "/student": {
       "post": {
-        "tags": [
-          "Student"
-        ],
+        "tags": ["Student"],
         "description": "",
         "parameters": [
           {
@@ -1416,9 +1336,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Student"
-        ],
+        "tags": ["Student"],
         "description": "",
         "parameters": [
           {
@@ -1454,9 +1372,7 @@
     },
     "/student/{id}": {
       "get": {
-        "tags": [
-          "Student"
-        ],
+        "tags": ["Student"],
         "description": "",
         "parameters": [
           {
@@ -1475,9 +1391,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Student"
-        ],
+        "tags": ["Student"],
         "description": "",
         "parameters": [
           {
@@ -1523,9 +1437,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Student"
-        ],
+        "tags": ["Student"],
         "description": "",
         "parameters": [
           {
@@ -1554,6 +1466,94 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/attendance": {
+      "post": {
+        "tags": ["Attendance"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAttendanceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAttendanceRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attendance/{id}/attendance": {
+      "patch": {
+        "tags": ["Attendance"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchAttendanceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchAttendanceRequest"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -1797,6 +1797,59 @@
         },
         "xml": {
           "name": "CreateStudentRequest"
+        }
+      },
+      "CreateAttendanceRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "68a5362e025235682acf72a8"
+          },
+          "class": {
+            "type": "string",
+            "example": "68a44b81a3997dce4bcd467d"
+          },
+          "attendance": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "example": "2024-12-12 00:00:00"
+              },
+              "status": {
+                "type": "string",
+                "example": "hadir"
+              },
+              "description": {
+                "type": "string",
+                "example": "Pengajian Umum"
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "CreateAttendanceRequest"
+        }
+      },
+      "PatchAttendanceRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "example": "2025-01-11 00:00:00"
+          },
+          "status": {
+            "type": "string",
+            "example": "hadir"
+          },
+          "description": {
+            "type": "string",
+            "example": "Pengajian Umum"
+          }
+        },
+        "xml": {
+          "name": "PatchAttendanceRequest"
         }
       }
     }

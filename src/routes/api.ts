@@ -12,6 +12,7 @@ import violationController from '../controllers/violation.controller';
 import classController from '../controllers/class.controller';
 import parentController from '../controllers/parent.controller';
 import studentController from '../controllers/student.controller';
+import attendanceController from '../controllers/attendance.controller';
 
 const router = express.Router();
 
@@ -635,6 +636,42 @@ router.delete(
     #swagger.security = [{
       "bearerAuth": []
     }]
+  */
+);
+
+//Attendance Schema
+router.post(
+  '/attendance',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  attendanceController.create
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreateAttendanceRequest"
+      }
+    }
+  */
+);
+router.patch(
+  '/attendance/:id/attendance',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  attendanceController.upsertAttendance
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/PatchAttendanceRequest"
+      }
+    }
   */
 );
 export default router;
