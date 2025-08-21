@@ -7,7 +7,6 @@ export const parentDTO = Yup.object({
   name: Yup.string().required(),
   noTlp: Yup.string().required(),
   poss: Yup.string().required(),
-  createdBy: Yup.string().required(),
   location: Yup.object()
     .shape({
       region: Yup.number(),

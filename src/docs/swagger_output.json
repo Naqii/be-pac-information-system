@@ -18,7 +18,9 @@
   "paths": {
     "/auth/register": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -44,7 +46,9 @@
     },
     "/auth/login": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -70,7 +74,9 @@
     },
     "/auth/me": {
       "get": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "parameters": [
           {
@@ -95,7 +101,9 @@
     },
     "/auth/activation": {
       "post": {
-        "tags": ["Auth"],
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -121,7 +129,9 @@
     },
     "/media/single-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -162,7 +172,9 @@
     },
     "/media/multiple-upload": {
       "post": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -206,7 +218,9 @@
     },
     "/media/remove": {
       "delete": {
-        "tags": ["Media"],
+        "tags": [
+          "Media"
+        ],
         "description": "",
         "parameters": [
           {
@@ -246,7 +260,9 @@
     },
     "/regions": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "responses": {
           "default": {
@@ -257,7 +273,9 @@
     },
     "/regions/{id}/province": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -278,7 +296,9 @@
     },
     "/regions/{id}/district": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -299,7 +319,9 @@
     },
     "/regions/{id}/village": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -320,7 +342,9 @@
     },
     "/regions-search": {
       "get": {
-        "tags": ["Regions"],
+        "tags": [
+          "Regions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -340,7 +364,9 @@
     },
     "/teachers": {
       "post": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -378,7 +404,9 @@
         }
       },
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -428,7 +456,9 @@
     },
     "/teachers/{id}": {
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -447,7 +477,9 @@
         }
       },
       "put": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -493,7 +525,9 @@
         }
       },
       "delete": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -526,7 +560,9 @@
     },
     "/teachers/{slug}/slug": {
       "get": {
-        "tags": ["Teachers"],
+        "tags": [
+          "Teachers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -547,7 +583,9 @@
     },
     "/learning": {
       "post": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -585,7 +623,9 @@
         }
       },
       "get": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -621,7 +661,9 @@
     },
     "/learning/{id}": {
       "get": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -640,7 +682,9 @@
         }
       },
       "put": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -686,7 +730,9 @@
         }
       },
       "delete": {
-        "tags": ["Learning"],
+        "tags": [
+          "Learning"
+        ],
         "description": "",
         "parameters": [
           {
@@ -719,7 +765,9 @@
     },
     "/violation": {
       "post": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -757,7 +805,9 @@
         }
       },
       "get": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -793,7 +843,9 @@
     },
     "/violation/{id}": {
       "get": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -812,7 +864,9 @@
         }
       },
       "put": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -858,7 +912,9 @@
         }
       },
       "delete": {
-        "tags": ["Violation"],
+        "tags": [
+          "Violation"
+        ],
         "description": "",
         "parameters": [
           {
@@ -891,7 +947,9 @@
     },
     "/class": {
       "post": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -929,7 +987,9 @@
         }
       },
       "get": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -979,7 +1039,9 @@
     },
     "/class/{id}": {
       "get": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -998,7 +1060,9 @@
         }
       },
       "put": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1044,7 +1108,9 @@
         }
       },
       "delete": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1077,7 +1143,9 @@
     },
     "/class/{slug}/slug": {
       "get": {
-        "tags": ["Class"],
+        "tags": [
+          "Class"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1098,7 +1166,9 @@
     },
     "/parent": {
       "post": {
-        "tags": ["Parent"],
+        "tags": [
+          "Parent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1136,7 +1206,9 @@
         }
       },
       "get": {
-        "tags": ["Parent"],
+        "tags": [
+          "Parent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1200,7 +1272,9 @@
     },
     "/parent/{id}": {
       "get": {
-        "tags": ["Parent"],
+        "tags": [
+          "Parent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1219,7 +1293,9 @@
         }
       },
       "put": {
-        "tags": ["Parent"],
+        "tags": [
+          "Parent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1265,7 +1341,9 @@
         }
       },
       "delete": {
-        "tags": ["Parent"],
+        "tags": [
+          "Parent"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1298,7 +1376,9 @@
     },
     "/student": {
       "post": {
-        "tags": ["Student"],
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1336,7 +1416,9 @@
         }
       },
       "get": {
-        "tags": ["Student"],
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1372,7 +1454,9 @@
     },
     "/student/{id}": {
       "get": {
-        "tags": ["Student"],
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1391,7 +1475,9 @@
         }
       },
       "put": {
-        "tags": ["Student"],
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1437,7 +1523,9 @@
         }
       },
       "delete": {
-        "tags": ["Student"],
+        "tags": [
+          "Student"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1470,7 +1558,9 @@
     },
     "/attendance": {
       "post": {
-        "tags": ["Attendance"],
+        "tags": [
+          "Attendance"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1506,11 +1596,49 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Attendance"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "default": 10,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/attendance/{id}/attendance": {
       "patch": {
-        "tags": ["Attendance"],
+        "tags": [
+          "Attendance"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1554,6 +1682,57 @@
             }
           }
         }
+      }
+    },
+    "/attendance/recap": {
+      "get": {
+        "tags": [
+          "Attendance"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "classId",
+            "in": "query",
+            "default": "68a6b088dc1aa32d7aab3c57",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "default": 1,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "default": 2025,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },

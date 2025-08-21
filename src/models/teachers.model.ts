@@ -12,7 +12,6 @@ export const teacherDTO = Yup.object({
   noTelp: Yup.string().required(),
   bidang: Yup.string().required(),
   pendidikan: Yup.string().required(),
-  createdBy: Yup.string().required(),
   slug: Yup.string(),
 });
 

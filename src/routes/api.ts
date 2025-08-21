@@ -657,6 +657,23 @@ router.post(
     }
   */
 );
+router.get(
+  '/attendance',
+  attendanceController.findAll
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
 router.patch(
   '/attendance/:id/attendance',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
@@ -671,6 +688,32 @@ router.patch(
       schema: {
         $ref: "#/components/schemas/PatchAttendanceRequest"
       }
+    }
+  */
+);
+router.get(
+  '/attendance/recap',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  attendanceController.recapByClassMonth
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.parameters['classId] = {
+    in: 'query',
+    type: 'string',
+    default: '68a6b088dc1aa32d7aab3c57',
+    }
+    #swagger.parameters['month'] = {
+    in: 'query',
+    type: 'number',
+    default: 01,
+    }
+    #swagger.parameters['year'] = {
+    in: 'query',
+    type: 'number',
+    default: 2025,
     }
   */
 );

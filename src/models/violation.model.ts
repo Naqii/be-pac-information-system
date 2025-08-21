@@ -10,10 +10,7 @@ const Schema = mongoose.Schema;
 export const violationDTO = Yup.object({
   name: Yup.string().required(),
   description: Yup.string().required(),
-  judgeBy: Yup.string().required(),
   point: Yup.string().required(),
-  createdBy: Yup.string().required(),
-  updateAt: Yup.string(),
 });
 
 export type TypeViolation = Yup.InferType<typeof violationDTO>;

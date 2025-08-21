@@ -8,8 +8,7 @@ export const ATTENDANCE_MODEL_NAME = 'Attendance';
 
 export const attendanceDTO = Yup.object({
   name: Yup.string().required(),
-  class: Yup.string().required(),
-  createdBy: Yup.string().required(),
+  classId: Yup.string().required(),
 });
 
 export enum AttendanceStatus {
@@ -35,10 +34,10 @@ export type TypeStudentAttendance = {
 };
 
 export interface Attendance
-  extends Omit<TypeAttendance, 'createdBy' | 'class' | 'name'> {
+  extends Omit<TypeAttendance, 'createdBy' | 'classId' | 'name'> {
   name: ObjectId;
   createdBy: ObjectId;
-  class: ObjectId;
+  classId: ObjectId;
   attendance: TypeStudentAttendance[];
 }
 
@@ -51,7 +50,7 @@ const AttendanceSchema = new Schema<Attendance>(
       ref: STUDENT_MODEL_NAME,
       required: true,
     },
-    class: {
+    classId: {
       type: Schema.Types.ObjectId,
       ref: CLASS_MODEL_NAME,
       required: true,

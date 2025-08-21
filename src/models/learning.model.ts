@@ -8,17 +8,15 @@ const Schema = mongoose.Schema;
 
 export const learningDTO = Yup.object({
   name: Yup.string().required(),
-  teacher: Yup.string().required(),
   description: Yup.string().required(),
-  createdBy: Yup.string().required(),
 });
 
 export type TypeLearning = Yup.InferType<typeof learningDTO>;
 
-export interface Learning extends Omit<TypeLearning, 'createdBy' | 'teacher'> {
+export interface Learning extends Omit<TypeLearning, 'createdBy' | 'teacherId'> {
   createdBy: ObjectId;
   createdAt: string;
-  teacher: ObjectId;
+  teacherId: ObjectId;
 }
 
 const LearningSchema = new Schema<Learning>(
@@ -28,7 +26,7 @@ const LearningSchema = new Schema<Learning>(
       required: true,
       unique: true,
     },
-    teacher: {
+    teacherId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: TEACHER_MODEL_NAME,

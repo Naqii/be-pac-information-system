@@ -8,8 +8,6 @@ export const STUDENT_MODEL_NAME = 'Student';
 export const studentDTO = Yup.object({
   name: Yup.string().required(),
   noTlp: Yup.string().required(),
-  parent: Yup.string().required(),
-  class: Yup.string().required(),
   location: Yup.object()
     .shape({
       region: Yup.number(),
@@ -18,16 +16,15 @@ export const studentDTO = Yup.object({
     .required(),
   startDate: Yup.string().required(),
   endDate: Yup.string(),
-  createdBy: Yup.string().required(),
 });
 
 export type TypeStudent = Yup.InferType<typeof studentDTO>;
 
 export interface Student
-  extends Omit<TypeStudent, 'parent' | 'createdBy' | 'class'> {
+  extends Omit<TypeStudent, 'parentId' | 'createdBy' | 'classId'> {
   createdBy: ObjectId;
-  parent: ObjectId;
-  class: ObjectId;
+  parentId: ObjectId;
+  classId: ObjectId;
   picture: string;
   createdAt: string;
 }
@@ -48,12 +45,12 @@ const StudentSchema = new Schema<Student>(
       type: Schema.Types.String,
       required: true,
     },
-    parent: {
+    parentId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: PARENT_MODEL_NAME,
     },
-    class: {
+    classId: {
       type: Schema.Types.ObjectId,
       required: true,
       ref: CLASS_MODEL_NAME,
