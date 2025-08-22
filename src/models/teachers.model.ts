@@ -6,7 +6,7 @@ export const TEACHER_MODEL_NAME = 'Teacher';
 const Schema = mongoose.Schema;
 
 export const teacherDTO = Yup.object({
-  name: Yup.string().required(),
+  teacherName: Yup.string().required(),
   startDate: Yup.string().required(),
   endDate: Yup.string(),
   noTelp: Yup.string().required(),
@@ -25,7 +25,7 @@ export interface Teacher extends Omit<TypeTeacher, 'createdBy'> {
 
 const TeacherSchema = new Schema<Teacher>(
   {
-    name: {
+    teacherName: {
       type: Schema.Types.String,
       required: true,
     },
@@ -66,11 +66,11 @@ const TeacherSchema = new Schema<Teacher>(
   {
     timestamps: true,
   }
-).index({ name: 'text' });
+).index({ teacherName: 'text' });
 
 TeacherSchema.pre('save', function () {
   if (!this.slug) {
-    const slug = this.name.split(' ').join('-').toLowerCase();
+    const slug = this.teacherName.split(' ').join('-').toLowerCase();
     this.slug = `${slug}`;
   }
 });

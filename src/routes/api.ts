@@ -717,4 +717,14 @@ router.get(
     }
   */
 );
+router.get(
+  '/attendance/export',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  attendanceController.exportExcel
+);
+router.delete(
+  '/attendance/:id/recap',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],   
+  attendanceController.removeItem);
+  
 export default router;

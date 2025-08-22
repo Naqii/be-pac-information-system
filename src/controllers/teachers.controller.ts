@@ -14,7 +14,7 @@ export default {
     try {
       const payload = { ...req.body, createdBy: req.user?.id } as TypeTeacher;
 
-      let baseSlug = formatSlug(payload.name);
+      let baseSlug = formatSlug(payload.teacherName);
       let slug = baseSlug;
       payload.slug = slug;
 

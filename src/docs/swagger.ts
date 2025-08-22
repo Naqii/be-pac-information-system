@@ -49,7 +49,7 @@ const doc = {
       },
 
       CreateTeachersRequest: {
-        name: 'sunan baihaqi',
+        teacherName: 'sunan baihaqi',
         noTelp: '080123456789',
         bidang: 'Tilawati 1-2',
         pendidikan: 'S1 - Teknik Informatika',
@@ -57,26 +57,26 @@ const doc = {
       },
 
       CreateLearningRequest: {
-        name: 'Tilawati 2',
-        teacher: '689feb50a2aa01a0f645a3b1',
+        learningName: 'Tilawati 2',
+        teacherId: '689feb50a2aa01a0f645a3b1',
         description: 'Tilawati 2 full',
       },
 
       CreateViolationRequest: {
-        name: 'Keterlambatan',
+        violationName: 'Keterlambatan',
         description: 'Keterlambatan mengikuti pengajian rutin',
         judgeBy: '689feb50a2aa01a0f645a3b1',
         point: '10',
       },
 
       CreateClassRequest: {
-        name: 'pegon bacaan',
-        teacherBy: '689feb50a2aa01a0f645a3b1',
+        className: 'pegon bacaan',
+        classTeacher: '689feb50a2aa01a0f645a3b1',
         learning: '68a298226bb188e5dd124b80',
       },
 
       CreateParentRequest: {
-        name: 'Sunan Baihaqi',
+        parentName: 'Sunan Baihaqi',
         noTlp: '080123456789',
         poss: 'Rukyah',
         location: {
@@ -86,10 +86,10 @@ const doc = {
       },
 
       CreateStudentRequest: {
-        name: 'Sunan Bukhori',
+        studentName: 'Sunan Bukhori',
         noTlp: '080123456789',
-        parent: '68a4800ca398cedf12d93f62',
-        class: '68a44b81a3997dce4bcd467d',
+        parentId: '68a4800ca398cedf12d93f62',
+        classId: '68a44b81a3997dce4bcd467d',
         startDate: '2024-12-12 00:00:00',
         location: {
           region: 3374070003,
@@ -98,8 +98,8 @@ const doc = {
       },
 
       CreateAttendanceRequest: {
-        name: '68a5362e025235682acf72a8',
-        class: '68a44b81a3997dce4bcd467d',
+        fullName: '68a5362e025235682acf72a8',
+        classId: '68a44b81a3997dce4bcd467d',
         attendance: {
           date: '2024-12-12 00:00:00',
           status: 'hadir',

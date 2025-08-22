@@ -6,7 +6,7 @@ import { CLASS_MODEL_NAME } from './class.model';
 export const STUDENT_MODEL_NAME = 'Student';
 
 export const studentDTO = Yup.object({
-  name: Yup.string().required(),
+  fullName: Yup.string().required(),
   noTlp: Yup.string().required(),
   location: Yup.object()
     .shape({
@@ -33,7 +33,7 @@ const Schema = mongoose.Schema;
 
 const StudentSchema = new Schema<Student>(
   {
-    name: {
+    fullName: {
       type: Schema.Types.String,
       required: true,
     },
@@ -82,7 +82,7 @@ const StudentSchema = new Schema<Student>(
   {
     timestamps: true,
   }
-).index({ name: 'text' });
+).index({ fullName: 'text' });
 
 const StudentModel = mongoose.model(STUDENT_MODEL_NAME, StudentSchema);
 

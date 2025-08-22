@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 export const PARENT_MODEL_NAME = 'Parent';
 
 export const parentDTO = Yup.object({
-  name: Yup.string().required(),
+  parentName: Yup.string().required(),
   noTlp: Yup.string().required(),
   poss: Yup.string().required(),
   location: Yup.object()
@@ -26,7 +26,7 @@ const Schema = mongoose.Schema;
 
 const ParentSchema = new Schema<Parent>(
   {
-    name: {
+    parentName: {
       type: Schema.Types.String,
       required: true,
     },
@@ -57,7 +57,7 @@ const ParentSchema = new Schema<Parent>(
   {
     timestamps: true,
   }
-).index({ name: 'text' });
+).index({ parentName: 'text' });
 
 const ParentModel = mongoose.model(PARENT_MODEL_NAME, ParentSchema);
 

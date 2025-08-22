@@ -8,7 +8,7 @@ export const VIOLATION_MODEL_NAME = 'Violation';
 const Schema = mongoose.Schema;
 
 export const violationDTO = Yup.object({
-  name: Yup.string().required(),
+  violationName: Yup.string().required(),
   description: Yup.string().required(),
   point: Yup.string().required(),
 });
@@ -24,7 +24,7 @@ export interface Violation
 
 const ViolationSchema = new Schema<Violation>(
   {
-    name: {
+    violationName: {
       type: Schema.Types.String,
       required: true,
     },
@@ -50,7 +50,7 @@ const ViolationSchema = new Schema<Violation>(
   {
     timestamps: true,
   }
-).index({ name: 'text' });
+).index({ violationName: 'text' });
 
 const ViolationModel = mongoose.model(VIOLATION_MODEL_NAME, ViolationSchema);
 

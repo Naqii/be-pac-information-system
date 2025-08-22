@@ -2,12 +2,11 @@ import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
 import { CLASS_MODEL_NAME } from './class.model';
 import { USER_MODEL_NAME } from './user.model';
-import { STUDENT_MODEL_NAME } from './student.model';
 
 export const ATTENDANCE_MODEL_NAME = 'Attendance';
 
 export const attendanceDTO = Yup.object({
-  name: Yup.string().required(),
+  fullName: Yup.string().required(),
   classId: Yup.string().required(),
 });
 
@@ -34,8 +33,8 @@ export type TypeStudentAttendance = {
 };
 
 export interface Attendance
-  extends Omit<TypeAttendance, 'createdBy' | 'classId' | 'name'> {
-  name: ObjectId;
+  extends Omit<TypeAttendance, 'createdBy' | 'classId' | 'fullName'> {
+  fullName: ObjectId;
   createdBy: ObjectId;
   classId: ObjectId;
   attendance: TypeStudentAttendance[];
@@ -45,9 +44,9 @@ const Schema = mongoose.Schema;
 
 const AttendanceSchema = new Schema<Attendance>(
   {
-    name: {
-      type: Schema.Types.ObjectId,
-      ref: STUDENT_MODEL_NAME,
+    fullName: {
+      type: Schema.Types.String,
+      ref: 'Student',
       required: true,
     },
     classId: {

@@ -1734,6 +1734,42 @@
           }
         ]
       }
+    },
+    "/attendance/export": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        ],
+        "parameters": [
+          {
+            "name": "classId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1815,7 +1851,7 @@
       "CreateTeachersRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "teacherName": {
             "type": "string",
             "example": "sunan baihaqi"
           },
@@ -1843,11 +1879,11 @@
       "CreateLearningRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "learningName": {
             "type": "string",
             "example": "Tilawati 2"
           },
-          "teacher": {
+          "teacherId": {
             "type": "string",
             "example": "689feb50a2aa01a0f645a3b1"
           },
@@ -1863,7 +1899,7 @@
       "CreateViolationRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "violationName": {
             "type": "string",
             "example": "Keterlambatan"
           },
@@ -1887,11 +1923,11 @@
       "CreateClassRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "className": {
             "type": "string",
             "example": "pegon bacaan"
           },
-          "teacherBy": {
+          "classTeacher": {
             "type": "string",
             "example": "689feb50a2aa01a0f645a3b1"
           },
@@ -1907,7 +1943,7 @@
       "CreateParentRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "parentName": {
             "type": "string",
             "example": "Sunan Baihaqi"
           },
@@ -1940,7 +1976,7 @@
       "CreateStudentRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "studentName": {
             "type": "string",
             "example": "Sunan Bukhori"
           },
@@ -1948,11 +1984,11 @@
             "type": "string",
             "example": "080123456789"
           },
-          "parent": {
+          "parentId": {
             "type": "string",
             "example": "68a4800ca398cedf12d93f62"
           },
-          "class": {
+          "classId": {
             "type": "string",
             "example": "68a44b81a3997dce4bcd467d"
           },
@@ -1981,11 +2017,11 @@
       "CreateAttendanceRequest": {
         "type": "object",
         "properties": {
-          "name": {
+          "fullName": {
             "type": "string",
             "example": "68a5362e025235682acf72a8"
           },
-          "class": {
+          "classId": {
             "type": "string",
             "example": "68a44b81a3997dce4bcd467d"
           },
