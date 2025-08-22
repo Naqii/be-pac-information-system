@@ -1737,6 +1737,9 @@
     },
     "/attendance/export": {
       "get": {
+        "tags": [
+          "Attendance"
+        ],
         "description": "",
         "produces": [
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
@@ -1775,11 +1778,19 @@
           "default": {
             "description": ""
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/attendance/{id}/recap": {
       "delete": {
+        "tags": [
+          "Attendance"
+        ],
         "description": "",
         "parameters": [
           {
@@ -1803,16 +1814,22 @@
             "description": ""
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "date": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/RemoveAttendanceRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveAttendanceRequest"
               }
             }
           }
@@ -2113,6 +2130,18 @@
         },
         "xml": {
           "name": "PatchAttendanceRequest"
+        }
+      },
+      "RemoveAttendanceRequest": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "example": "2025-01-11"
+          }
+        },
+        "xml": {
+          "name": "RemoveAttendanceRequest"
         }
       }
     }

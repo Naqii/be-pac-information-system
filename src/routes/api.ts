@@ -721,10 +721,29 @@ router.get(
   '/attendance/export',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
   attendanceController.exportExcel
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
 );
 router.delete(
   '/attendance/:id/recap',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],   
-  attendanceController.removeItem);
-  
+  attendanceController.removeItem
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/RemoveAttendanceRequest"
+      }
+    }
+  */
+);
+
 export default router;

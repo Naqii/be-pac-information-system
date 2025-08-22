@@ -112,6 +112,10 @@ const doc = {
         status: 'hadir',
         description: 'Pengajian Umum',
       },
+
+      RemoveAttendanceRequest: {
+        date: '2025-01-11'
+      },
     },
   },
 };
