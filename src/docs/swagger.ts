@@ -53,7 +53,7 @@ const doc = {
         noTelp: '080123456789',
         bidang: 'Tilawati 1-2',
         pendidikan: 'S1 - Teknik Informatika',
-        startDate: '2024-12-12 00:00:00',
+        startDate: '2024-12-12',
       },
 
       CreateLearningRequest: {
@@ -90,7 +90,7 @@ const doc = {
         noTlp: '080123456789',
         parentId: '68a4800ca398cedf12d93f62',
         classId: '68a44b81a3997dce4bcd467d',
-        startDate: '2024-12-12 00:00:00',
+        startDate: '2024-12-12',
         location: {
           region: 3374070003,
           address: 'Jl Mulawarmman Selatan',
@@ -101,14 +101,14 @@ const doc = {
         fullName: '68a5362e025235682acf72a8',
         classId: '68a44b81a3997dce4bcd467d',
         attendance: {
-          date: '2024-12-12 00:00:00',
+          date: '2024-12-12',
           status: 'hadir',
           description: 'Pengajian Umum',
         },
       },
 
       PatchAttendanceRequest: {
-        date: '2025-01-11 00:00:00',
+        date: '2025-01-11',
         status: 'hadir',
         description: 'Pengajian Umum',
       },

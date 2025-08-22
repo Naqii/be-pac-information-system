@@ -1743,6 +1743,13 @@
         ],
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "classId",
             "in": "query",
             "schema": {
@@ -1767,6 +1774,47 @@
         "responses": {
           "default": {
             "description": ""
+          }
+        }
+      }
+    },
+    "/attendance/{id}/recap": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1869,7 +1917,7 @@
           },
           "startDate": {
             "type": "string",
-            "example": "2024-12-12 00:00:00"
+            "example": "2024-12-12"
           }
         },
         "xml": {
@@ -1994,7 +2042,7 @@
           },
           "startDate": {
             "type": "string",
-            "example": "2024-12-12 00:00:00"
+            "example": "2024-12-12"
           },
           "location": {
             "type": "object",
@@ -2030,7 +2078,7 @@
             "properties": {
               "date": {
                 "type": "string",
-                "example": "2024-12-12 00:00:00"
+                "example": "2024-12-12"
               },
               "status": {
                 "type": "string",
@@ -2052,7 +2100,7 @@
         "properties": {
           "date": {
             "type": "string",
-            "example": "2025-01-11 00:00:00"
+            "example": "2025-01-11"
           },
           "status": {
             "type": "string",
