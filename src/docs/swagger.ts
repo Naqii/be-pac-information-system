@@ -114,7 +114,7 @@ const doc = {
       },
 
       RemoveAttendanceRequest: {
-        date: '2025-01-11'
+        date: '2025-01-11',
       },
     },
   },

@@ -444,14 +444,6 @@ router.get(
     type: 'number',
     default: 1,
     }
-    #swagger.parameters['bidang'] = {
-    in: 'query',
-    type: 'string'
-    }
-    #swagger.parameters['pendidikan'] = {
-    in: 'query',
-    type: 'string',
-    }
   */
 );
 router.get(
@@ -730,7 +722,7 @@ router.get(
 );
 router.delete(
   '/attendance/:id/recap',
-  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],   
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
   attendanceController.removeItem
   /*
     #swagger.tags = ['Attendance']

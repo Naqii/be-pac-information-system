@@ -16,7 +16,7 @@ export type TypeLearning = Yup.InferType<typeof learningDTO>;
 export interface Learning
   extends Omit<TypeLearning, 'createdBy' | 'teacherId'> {
   createdBy: ObjectId;
-  createdAt: string;
+  createdAt?: string;
   teacherId: ObjectId;
 }
 

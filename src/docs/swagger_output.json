@@ -1014,20 +1014,6 @@
             "schema": {
               "type": "number"
             }
-          },
-          {
-            "name": "bidang",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pendidikan",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {

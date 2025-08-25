@@ -20,8 +20,10 @@ export default {
       } as TypeAttendance;
       await attendanceDTO.validate(payload);
 
-      const user = await StudentModel.findById(payload.fullName).select('fullName');
-      if(!user) return response.notFound(res, 'Student not found');
+      const user = await StudentModel.findById(payload.fullName).select(
+        'fullName'
+      );
+      if (!user) return response.notFound(res, 'Student not found');
 
       payload.fullName = user.fullName;
 
@@ -297,7 +299,7 @@ export default {
 
       const result = await AttendanceModel.findByIdAndUpdate(
         id,
-        { $pull: { attendance: { date: new Date(date)}}},
+        { $pull: { attendance: { date: new Date(date) } } },
         { new: true }
       );
 
@@ -306,5 +308,5 @@ export default {
     } catch (error) {
       return response.error(res, error, 'failed remove item');
     }
-  }
+  },
 };

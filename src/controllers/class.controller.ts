@@ -48,6 +48,7 @@ export default {
         .sort({ createdAt: -1 })
         .lean()
         .exec();
+
       const count = await ClassModel.countDocuments(query);
 
       response.pagination(

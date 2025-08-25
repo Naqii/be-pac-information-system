@@ -1,6 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
-import { LEARNING_MODEL_NAME } from './learning.model';
 import { TEACHER_MODEL_NAME } from './teachers.model';
 
 export const CLASS_MODEL_NAME = 'Class';
@@ -18,7 +17,7 @@ export interface Class
   extends Omit<TypeClass, 'classTeacher' | 'learning' | 'createdBy'> {
   classTeacher: ObjectId;
   createdBy: ObjectId;
-  createdAt: string;
+  createdAt?: string;
 }
 
 const ClassSchema = new Schema<Class>(
