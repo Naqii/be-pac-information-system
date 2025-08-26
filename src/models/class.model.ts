@@ -25,6 +25,7 @@ const ClassSchema = new Schema<Class>(
     className: {
       type: Schema.Types.String,
       required: true,
+      unique: true,
     },
     classTeacher: {
       type: Schema.Types.ObjectId,

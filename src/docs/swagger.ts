@@ -88,8 +88,8 @@ const doc = {
       CreateStudentRequest: {
         studentName: 'Sunan Bukhori',
         noTlp: '080123456789',
-        parentId: '68a4800ca398cedf12d93f62',
-        classId: '68a44b81a3997dce4bcd467d',
+        parentName: '68a4800ca398cedf12d93f62',
+        className: '68a44b81a3997dce4bcd467d',
         startDate: '2024-12-12',
         location: {
           region: 3374070003,
@@ -99,7 +99,7 @@ const doc = {
 
       CreateAttendanceRequest: {
         fullName: '68a5362e025235682acf72a8',
-        classId: '68a44b81a3997dce4bcd467d',
+        className: '68a44b81a3997dce4bcd467d',
         attendance: {
           date: '2024-12-12',
           status: 'hadir',

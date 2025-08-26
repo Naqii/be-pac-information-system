@@ -29,7 +29,7 @@ export default {
 
       const existed = await AttendanceModel.findOne({
         name: payload.fullName,
-        class: payload.classId,
+        class: payload.className,
       });
       if (existed)
         return response.conflict(res, 'attendance doc already existed');

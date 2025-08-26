@@ -1205,28 +1205,7 @@
             }
           },
           {
-            "name": "category",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isOnline",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isFeatured",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isPublished",
+            "name": "poss",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1409,6 +1388,13 @@
         "parameters": [
           {
             "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "className",
             "in": "query",
             "schema": {
               "type": "string"
@@ -2035,11 +2021,11 @@
             "type": "string",
             "example": "080123456789"
           },
-          "parentId": {
+          "parentName": {
             "type": "string",
             "example": "68a4800ca398cedf12d93f62"
           },
-          "classId": {
+          "className": {
             "type": "string",
             "example": "68a44b81a3997dce4bcd467d"
           },
@@ -2072,7 +2058,7 @@
             "type": "string",
             "example": "68a5362e025235682acf72a8"
           },
-          "classId": {
+          "className": {
             "type": "string",
             "example": "68a44b81a3997dce4bcd467d"
           },

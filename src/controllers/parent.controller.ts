@@ -21,26 +21,16 @@ export default {
         let query: FilterQuery<TypeParent> = {};
 
         if (filter.search) query.$text = { $search: filter.search };
+        if (filter.poss) query.poss = new RegExp(filter.poss, 'i');
 
         return query;
       };
 
-      const {
-        limit = 10,
-        page = 1,
-        search,
-        category,
-        isOnline,
-        isFeatured,
-        isPublished,
-      } = req.query;
+      const { limit = 10, page = 1, search, poss } = req.query;
 
       const query = buildQuery({
         search,
-        category,
-        isPublished,
-        isFeatured,
-        isOnline,
+        poss,
       });
 
       const result = await ParentModel.find(query)

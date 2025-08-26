@@ -3,16 +3,39 @@ import StudentModel, { studentDTO, TypeStudent } from '../models/student.model';
 import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
+import ClassModel from '../models/class.model';
+import ParentModel from '../models/parent.model';
 
 export default {
   async create(req: IReqUser, res: Response) {
     try {
-      const payload = { ...req.body, createdBy: req.user?.id } as TypeStudent;
+      const payload = {
+        ...req.body,
+        createdBy: req.user?.id,
+      } as TypeStudent;
       await studentDTO.validate(payload);
+
+      const ortu = await ParentModel.findById(payload.parentName).select(
+        'parentName'
+      );
+      if (!ortu) return response.notFound(res, 'Parent not found');
+      payload.parentName = ortu.parentName;
+
+      const kelas = await ClassModel.findById(payload.className).select(
+        'className'
+      );
+      if (!kelas) return response.notFound(res, 'Class not found');
+      payload.className = kelas.className;
+
+      const existed = await StudentModel.findOne({
+        className: payload.className,
+        parentName: payload.parentName,
+      });
+
       const result = await StudentModel.create(payload);
-      response.success(res, result, 'success to create a student');
+      return response.success(res, result, 'success to create attendance doc');
     } catch (error) {
-      response.error(res, error, 'failed to create a student');
+      return response.error(res, error, 'failed to create attendance doc');
     }
   },
   async findAll(req: IReqUser, res: Response) {
@@ -21,17 +44,17 @@ export default {
         let query: FilterQuery<TypeStudent> = {};
 
         if (filter.search) query.$text = { $search: filter.search };
-        if (filter.classId) query.classId = filter.classId;
+        if (filter.className)
+          query.className = new RegExp(filter.className, 'i');
 
         return query;
       };
 
-      const { limit = 10, page = 1, search } = req.query;
+      const { limit = 10, page = 1, search, className } = req.query;
 
-      const query = buildQuery({ search });
+      const query = buildQuery({ search, className });
 
       const result = await StudentModel.find(query)
-        .populate('classId')
         .limit(+limit)
         .skip((+page - 1) * +limit)
         .sort({ createdAt: -1 })
@@ -76,8 +99,32 @@ export default {
       if (!isValidObjectId(id))
         return response.notFound(res, 'failed to update student');
 
-      const result = await StudentModel.findByIdAndUpdate(id, req.body, {
+      const payload = {
+        ...req.body,
+        updateBy: req.user?.id,
+      } as Partial<TypeStudent>;
+
+      if (payload.className && isValidObjectId(payload.className)) {
+        const kelas = await ClassModel.findById(payload.className).select(
+          'className'
+        );
+        if (!kelas) return response.notFound(res, 'Class not found');
+        payload.className = kelas.className;
+      }
+
+      if (payload.parentName && isValidObjectId(payload.parentName)) {
+        const ortu = await ParentModel.findById(payload.parentName).select(
+          'parentName'
+        );
+        if (!ortu) return response.notFound(res, 'Parent not found');
+        payload.parentName = ortu.parentName;
+      }
+
+      await studentDTO.validate(payload, { abortEarly: false });
+
+      const result = await StudentModel.findByIdAndUpdate(id, payload, {
         new: true,
+        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'data not found');
