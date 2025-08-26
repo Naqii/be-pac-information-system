@@ -101,7 +101,7 @@ const UserSchema = new Schema<User>(
   {
     timestamps: true,
   }
-);
+).index({ fullName: 'text' });
 
 UserSchema.pre('save', function (next) {
   const user = this;
