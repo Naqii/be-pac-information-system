@@ -21,6 +21,7 @@ export default {
         let query: FilterQuery<TypeStudent> = {};
 
         if (filter.search) query.$text = { $search: filter.search };
+        if (filter.classId) query.classId = filter.classId;
 
         return query;
       };
@@ -30,6 +31,7 @@ export default {
       const query = buildQuery({ search });
 
       const result = await StudentModel.find(query)
+        .populate('classId')
         .limit(+limit)
         .skip((+page - 1) * +limit)
         .sort({ createdAt: -1 })

@@ -82,7 +82,7 @@ const AttendanceSchema = new Schema<Attendance>(
   {
     timestamps: true,
   }
-).index({ name: 'text' });
+).index({ fullName: 'text' });
 
 const AttendanceModel = mongoose.model(ATTENDANCE_MODEL_NAME, AttendanceSchema);
 export default AttendanceModel;
