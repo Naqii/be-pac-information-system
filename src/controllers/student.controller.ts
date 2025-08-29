@@ -44,15 +44,13 @@ export default {
         let query: FilterQuery<TypeStudent> = {};
 
         if (filter.search) query.$text = { $search: filter.search };
-        if (filter.className)
-          query.className = new RegExp(filter.className, 'i');
 
         return query;
       };
 
-      const { limit = 10, page = 1, search, className } = req.query;
+      const { limit = 10, page = 1, search } = req.query;
 
-      const query = buildQuery({ search, className });
+      const query = buildQuery({ search });
 
       const result = await StudentModel.find(query)
         .limit(+limit)
@@ -76,18 +74,21 @@ export default {
       response.error(res, error, 'failed to find all student');
     }
   },
-  async findOne(req: IReqUser, res: Response) {
+  async findByClass(req: IReqUser, res: Response) {
     try {
-      const { id } = req.params;
+      const { className } = req.params;
 
-      if (!isValidObjectId(id))
-        return response.notFound(res, 'failed find student data');
+      if (!className) {
+        return response.notFound(res, 'className is required');
+      }
 
-      const result = await StudentModel.findById(id);
+      const result = await StudentModel.find({ className });
 
-      if (!result) return response.notFound(res, 'failed find students data');
+      if (!result || result.length === 0) {
+        return response.notFound(res, 'No student data found for this class');
+      }
 
-      response.success(res, result, 'success find one students data');
+      response.success(res, result, 'Successfully fetched student data');
     } catch (error) {
       response.error(res, error, 'failed to find students data');
     }
