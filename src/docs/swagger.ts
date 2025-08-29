@@ -51,6 +51,7 @@ const doc = {
       CreateTeachersRequest: {
         teacherName: 'sunan baihaqi',
         noTelp: '080123456789',
+        gender: 'male',
         bidang: 'Tilawati 1-2',
         pendidikan: 'S1 - Teknik Informatika',
         startDate: '2024-12-12',
@@ -78,6 +79,7 @@ const doc = {
       CreateParentRequest: {
         parentName: 'Sunan Baihaqi',
         noTlp: '080123456789',
+        gender: 'father',
         poss: 'Rukyah',
         location: {
           region: 3374070003,
@@ -88,6 +90,7 @@ const doc = {
       CreateStudentRequest: {
         studentName: 'Sunan Bukhori',
         noTlp: '080123456789',
+        gender: 'male',
         parentName: '68a4800ca398cedf12d93f62',
         className: '68a44b81a3997dce4bcd467d',
         startDate: '2024-12-12',

@@ -10,10 +10,16 @@ export const teacherDTO = Yup.object({
   startDate: Yup.string().required(),
   endDate: Yup.string(),
   noTelp: Yup.string().required(),
+  gender: Yup.string().required(),
   bidang: Yup.string().required(),
   pendidikan: Yup.string().required(),
   slug: Yup.string(),
 });
+
+export enum GenderStatus {
+  MALE = 'Laki-laki',
+  FEMALE = 'Perempuan',
+}
 
 export type TypeTeacher = Yup.InferType<typeof teacherDTO>;
 
@@ -43,6 +49,11 @@ const TeacherSchema = new Schema<Teacher>(
     },
     noTelp: {
       type: Schema.Types.String,
+      required: true,
+    },
+    gender: {
+      type: Schema.Types.String,
+      enum: [GenderStatus.MALE, GenderStatus.FEMALE],
       required: true,
     },
     bidang: {

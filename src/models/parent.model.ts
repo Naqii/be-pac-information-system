@@ -6,6 +6,7 @@ export const PARENT_MODEL_NAME = 'Parent';
 export const parentDTO = Yup.object({
   parentName: Yup.string().required(),
   noTlp: Yup.string().required(),
+  gender: Yup.string().required(),
   poss: Yup.string().required(),
   location: Yup.object()
     .shape({
@@ -14,6 +15,11 @@ export const parentDTO = Yup.object({
     })
     .required(),
 });
+
+export enum GenderStatus {
+  MALE = 'Bapak',
+  FEMALE = 'Ibu',
+}
 
 export type TypeParent = Yup.InferType<typeof parentDTO>;
 
@@ -32,6 +38,11 @@ const ParentSchema = new Schema<Parent>(
     },
     noTlp: {
       type: Schema.Types.String,
+      required: true,
+    },
+    gender: {
+      type: Schema.Types.String,
+      enum: [GenderStatus.MALE, GenderStatus.FEMALE],
       required: true,
     },
     poss: {

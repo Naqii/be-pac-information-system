@@ -8,6 +8,7 @@ export const STUDENT_MODEL_NAME = 'Student';
 export const studentDTO = Yup.object({
   fullName: Yup.string().required(),
   noTlp: Yup.string().required(),
+  gender: Yup.string().required(),
   parentName: Yup.string().required(),
   className: Yup.string().required(),
   location: Yup.object()
@@ -19,6 +20,11 @@ export const studentDTO = Yup.object({
   startDate: Yup.string().required(),
   endDate: Yup.string(),
 });
+
+export enum GenderStatus {
+  MALE = 'Laki-laki',
+  FEMALE = 'Perempuan',
+}
 
 export type TypeStudent = Yup.InferType<typeof studentDTO>;
 
@@ -46,6 +52,11 @@ const StudentSchema = new Schema<Student>(
     },
     noTlp: {
       type: Schema.Types.String,
+      required: true,
+    },
+    gender: {
+      type: Schema.Types.String,
+      enum: [GenderStatus.MALE, GenderStatus.FEMALE],
       required: true,
     },
     parentName: {

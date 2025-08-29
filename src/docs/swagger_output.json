@@ -1387,14 +1387,14 @@
         "description": "",
         "parameters": [
           {
-            "name": "search",
+            "name": "className",
             "in": "query",
             "schema": {
               "type": "string"
             }
           },
           {
-            "name": "className",
+            "name": "search",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1425,27 +1425,6 @@
       }
     },
     "/student/{id}": {
-      "get": {
-        "tags": [
-          "Student"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
       "put": {
         "tags": [
           "Student"
@@ -1896,6 +1875,10 @@
             "type": "string",
             "example": "080123456789"
           },
+          "gender": {
+            "type": "string",
+            "example": "male"
+          },
           "bidang": {
             "type": "string",
             "example": "Tilawati 1-2"
@@ -1988,6 +1971,10 @@
             "type": "string",
             "example": "080123456789"
           },
+          "gender": {
+            "type": "string",
+            "example": "father"
+          },
           "poss": {
             "type": "string",
             "example": "Rukyah"
@@ -2020,6 +2007,10 @@
           "noTlp": {
             "type": "string",
             "example": "080123456789"
+          },
+          "gender": {
+            "type": "string",
+            "example": "male"
           },
           "parentName": {
             "type": "string",
