@@ -40,17 +40,25 @@ export default {
   },
   async findAll(req: IReqUser, res: Response) {
     try {
-      const buildQuery = (filter: any) => {
-        let query: FilterQuery<TypeStudent> = {};
+      const { limit = 10, page = 1, className, search } = req.query;
 
-        if (filter.search) query.$text = { $search: filter.search };
+      const allowedClasses = ['PraRemaja', 'Remaja', 'Usman'];
 
-        return query;
-      };
+      let query: FilterQuery<TypeStudent> = {};
 
-      const { limit = 10, page = 1, search } = req.query;
+      if (search) {
+        query.$text = { $search: search as string };
+      }
 
-      const query = buildQuery({ search });
+      if (className) {
+        if (!allowedClasses.includes(className as string)) {
+          return response.notFound(res, 'Invalid className');
+        }
+        query.className = className;
+      } else {
+        // Kalau className tidak dikirim, defaultnya ambil semua dari allowedClasses
+        query.className = { $in: allowedClasses };
+      }
 
       const result = await StudentModel.find(query)
         .limit(+limit)
@@ -74,25 +82,42 @@ export default {
       response.error(res, error, 'failed to find all student');
     }
   },
-  async findByClass(req: IReqUser, res: Response) {
-    try {
-      const { className } = req.params;
+  // async findByClass(req: IReqUser, res: Response) {
+  //   try {
+  //     const { className } = req.params;
 
-      if (!className) {
-        return response.notFound(res, 'className is required');
-      }
+  //     if (!className) {
+  //       return response.notFound(res, 'className is required');
+  //     }
 
-      const result = await StudentModel.find({ className });
+  //     const { limit = 10, page = 1 } = req.query;
 
-      if (!result || result.length === 0) {
-        return response.notFound(res, 'No student data found for this class');
-      }
+  //     const result = await StudentModel.find({ className })
+  //       .limit(+limit)
+  //       .skip((+page - 1) * +limit)
+  //       .sort({ createdAt: -1 })
+  //       .lean()
+  //       .exec();
+  //     const count = await StudentModel.countDocuments(result);
 
-      response.success(res, result, 'Successfully fetched student data');
-    } catch (error) {
-      response.error(res, error, 'failed to find students data');
-    }
-  },
+  //     if (!result || result.length === 0) {
+  //       return response.notFound(res, 'No student data found for this class');
+  //     }
+
+  //     response.pagination(
+  //       res,
+  //       result,
+  //       {
+  //         current: +page,
+  //         total: count,
+  //         totalPages: Math.ceil(count / +limit),
+  //       },
+  //       'success find all student'
+  //     );
+  //   } catch (error) {
+  //     response.error(res, error, 'failed to find students data');
+  //   }
+  // },
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
