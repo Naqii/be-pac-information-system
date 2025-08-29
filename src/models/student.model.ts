@@ -18,7 +18,6 @@ export const studentDTO = Yup.object({
     })
     .required(),
   startDate: Yup.string().required(),
-  endDate: Yup.string(),
 });
 
 export enum GenderStatus {
@@ -80,10 +79,6 @@ const StudentSchema = new Schema<Student>(
     startDate: {
       type: Schema.Types.String,
       required: true,
-    },
-    endDate: {
-      type: Schema.Types.String,
-      default: '-',
     },
     createdBy: {
       type: Schema.Types.ObjectId,

@@ -89,6 +89,7 @@ const doc = {
 
       CreateStudentRequest: {
         studentName: 'Sunan Bukhori',
+        picture: '',
         noTlp: '080123456789',
         gender: 'male',
         parentName: '68a4800ca398cedf12d93f62',

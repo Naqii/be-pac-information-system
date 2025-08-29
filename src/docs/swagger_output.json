@@ -2004,6 +2004,10 @@
             "type": "string",
             "example": "Sunan Bukhori"
           },
+          "picture": {
+            "type": "string",
+            "example": ""
+          },
           "noTlp": {
             "type": "string",
             "example": "080123456789"
