@@ -82,42 +82,22 @@ export default {
       response.error(res, error, 'failed to find all student');
     }
   },
-  // async findByClass(req: IReqUser, res: Response) {
-  //   try {
-  //     const { className } = req.params;
+  async findByOne(req: IReqUser, res: Response) {
+    try {
+      const { id } = req.params;
 
-  //     if (!className) {
-  //       return response.notFound(res, 'className is required');
-  //     }
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed find student data');
 
-  //     const { limit = 10, page = 1 } = req.query;
+      const result = await StudentModel.findById(id);
 
-  //     const result = await StudentModel.find({ className })
-  //       .limit(+limit)
-  //       .skip((+page - 1) * +limit)
-  //       .sort({ createdAt: -1 })
-  //       .lean()
-  //       .exec();
-  //     const count = await StudentModel.countDocuments(result);
+      if (!result) return response.notFound(res, 'failed find student data');
 
-  //     if (!result || result.length === 0) {
-  //       return response.notFound(res, 'No student data found for this class');
-  //     }
-
-  //     response.pagination(
-  //       res,
-  //       result,
-  //       {
-  //         current: +page,
-  //         total: count,
-  //         totalPages: Math.ceil(count / +limit),
-  //       },
-  //       'success find all student'
-  //     );
-  //   } catch (error) {
-  //     response.error(res, error, 'failed to find students data');
-  //   }
-  // },
+      response.success(res, result, 'success find one student data');
+    } catch (error) {
+      response.error(res, error, 'failed to find student data');
+    }
+  },
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

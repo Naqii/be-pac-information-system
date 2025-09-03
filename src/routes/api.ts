@@ -595,13 +595,13 @@ router.get(
     }
   */
 );
-// router.get(
-//   '/student/:className',
-//   studentController.findByClass
-//   /*
-//     #swagger.tags = ['Student']
-//   */
-// );
+router.get(
+  '/student/:id',
+  studentController.findByOne
+  /*
+    #swagger.tags = ['Student']
+  */
+);
 router.put(
   '/student/:id',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
