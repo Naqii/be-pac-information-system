@@ -603,8 +603,8 @@ router.get(
   */
 );
 router.get(
-  '/student/:id',
-  studentController.findByOne
+  '/student/:className',
+  studentController.findByclassName
   /*
     #swagger.tags = ['Student']
   */

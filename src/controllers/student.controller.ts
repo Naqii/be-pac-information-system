@@ -3,7 +3,6 @@ import StudentModel, { studentDTO, TypeStudent } from '../models/student.model';
 import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
-import ParentModel from '../models/parent.model';
 import ClassModel from '../models/class.model';
 
 export default {
@@ -15,12 +14,6 @@ export default {
       } as TypeStudent;
       await studentDTO.validate(payload);
 
-      const kelas = await ClassModel.findById(payload.className).select(
-        'className'
-      );
-      if (!kelas) return response.notFound(res, 'Class not found');
-      payload.className = kelas.className;
-
       const result = await StudentModel.create(payload);
       return response.success(res, result, 'success to create student');
     } catch (error) {
@@ -29,25 +22,21 @@ export default {
   },
   async findAll(req: IReqUser, res: Response) {
     try {
-      const { limit = 10, page = 1, className, search } = req.query;
+      const buildQuery = (filter: any) => {
+        let query: FilterQuery<TypeStudent> = {};
 
-      const allowedClasses = ['PraRemaja', 'Remaja', 'Usman'];
+        if (filter.search) query.$text = { $search: filter.search };
+        if (filter.className)
+          query.className = new RegExp(filter.className, 'i');
 
-      let query: FilterQuery<TypeStudent> = {};
+        return query;
+      };
 
-      if (search) {
-        query.$text = { $search: search as string };
-      }
+      const { limit = 10, page = 1, search } = req.query;
 
-      if (className) {
-        if (!allowedClasses.includes(className as string)) {
-          return response.notFound(res, 'Invalid className');
-        }
-        query.className = className;
-      } else {
-        // Kalau className tidak dikirim, defaultnya ambil semua dari allowedClasses
-        query.className = { $in: allowedClasses };
-      }
+      const query = buildQuery({
+        search,
+      });
 
       const result = await StudentModel.find(query)
         .limit(+limit)
@@ -55,6 +44,7 @@ export default {
         .sort({ createdAt: -1 })
         .lean()
         .exec();
+
       const count = await StudentModel.countDocuments(query);
 
       response.pagination(
@@ -65,66 +55,62 @@ export default {
           total: count,
           totalPages: Math.ceil(count / +limit),
         },
-        'success find all student'
+        'success find all students'
       );
     } catch (error) {
-      response.error(res, error, 'failed to find all student');
+      response.error(res, error, 'failed find all students');
     }
-
-    // try {
-    //   const buildQuery = (filter: any) => {
-    //     let query: FilterQuery<TypeStudent> = {};
-
-    //     if (filter.search) query.$text = { $search: filter.search };
-    //     if (filter.className)
-    //       query.className = new RegExp(filter.className, 'i');
-
-    //     return query;
-    //   };
-
-    //   const { limit = 10, page = 1, search } = req.query;
-
-    //   const query = buildQuery({
-    //     search,
-    //   });
-
-    //   const result = await StudentModel.find(query)
-    //     .limit(+limit)
-    //     .skip((+page - 1) * +limit)
-    //     .sort({ createdAt: -1 })
-    //     .lean()
-    //     .exec();
-
-    //   const count = await StudentModel.countDocuments(query);
-
-    //   response.pagination(
-    //     res,
-    //     result,
-    //     {
-    //       current: +page,
-    //       total: count,
-    //       totalPages: Math.ceil(count / +limit),
-    //     },
-    //     'success find all students'
-    //   );
-    // } catch (error) {
-    //   response.error(res, error, 'failed find all students');
-    // }
   },
-  async findByOne(req: IReqUser, res: Response) {
+  async findByclassName(req: IReqUser, res: Response) {
     try {
-      const { id } = req.params;
+      const { className } = req.params;
 
-      if (!isValidObjectId(id))
-        return response.notFound(res, 'failed find student data');
+      if (!isValidObjectId(className)) {
+        return response.notFound(res, 'Invalid className id');
+      }
 
-      const result = await StudentModel.findById(id);
+      const kelas = await ClassModel.findById(className).select('className');
+      if (!kelas) {
+        return response.notFound(res, 'Class not found');
+      }
 
-      if (!result) return response.notFound(res, 'failed find student data');
+      const students = await StudentModel.find({ className: className });
 
-      response.success(res, result, 'success find one student data');
+      if (!students || students.length === 0) {
+        return response.notFound(res, 'No students found for this class');
+      }
+
+      const { limit = 10, page = 1, search } = req.query;
+
+      const buildQuery = (filter: any) => {
+        let query: FilterQuery<TypeStudent> = { className };
+        if (filter.search) query.$text = { $search: filter.search };
+        return query;
+      };
+
+      const query = buildQuery({ search });
+
+      const result = await StudentModel.find(query)
+        .limit(+limit)
+        .skip((+page - 1) * +limit)
+        .sort({ createdAt: -1 })
+        .lean()
+        .exec();
+
+      const count = await StudentModel.countDocuments(query);
+
+      response.pagination(
+        res,
+        result,
+        {
+          current: +page,
+          total: count,
+          totalPages: Math.ceil(count / +limit),
+        },
+        'success find students by class name'
+      );
     } catch (error) {
-      response.error(res, error, 'failed to find student data');
+      response.error(res, error, 'failed to find students by class name');
     }
   },
   async update(req: IReqUser, res: Response) {
