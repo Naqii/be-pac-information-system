@@ -15,22 +15,22 @@ export default {
       } as TypeStudent;
       await studentDTO.validate(payload);
 
-      const ortu = await ParentModel.findById(payload.parentName).select(
-        'parentName'
-      );
-      if (!ortu) return response.notFound(res, 'Parent not found');
-      payload.parentName = ortu.parentName;
+      // const ortu = await ParentModel.findById(payload.parentName).select(
+      //   'parentName'
+      // );
+      // if (!ortu) return response.notFound(res, 'Parent not found');
+      // payload.parentName = ortu.parentName;
 
-      const kelas = await ClassModel.findById(payload.className).select(
-        'className'
-      );
-      if (!kelas) return response.notFound(res, 'Class not found');
-      payload.className = kelas.className;
+      // const kelas = await ClassModel.findById(payload.className).select(
+      //   'className'
+      // );
+      // if (!kelas) return response.notFound(res, 'Class not found');
+      // payload.className = kelas.className;
 
-      const existed = await StudentModel.findOne({
-        className: payload.className,
-        parentName: payload.parentName,
-      });
+      // const existed = await StudentModel.findOne({
+      //   className: payload.className,
+      //   parentName: payload.parentName,
+      // });
 
       const result = await StudentModel.create(payload);
       return response.success(res, result, 'success to create attendance doc');
@@ -110,21 +110,21 @@ export default {
         updateBy: req.user?.id,
       } as Partial<TypeStudent>;
 
-      if (payload.className && isValidObjectId(payload.className)) {
-        const kelas = await ClassModel.findById(payload.className).select(
-          'className'
-        );
-        if (!kelas) return response.notFound(res, 'Class not found');
-        payload.className = kelas.className;
-      }
+      // if (payload.className && isValidObjectId(payload.className)) {
+      //   const kelas = await ClassModel.findById(payload.className).select(
+      //     'className'
+      //   );
+      //   if (!kelas) return response.notFound(res, 'Class not found');
+      //   payload.className = kelas.className;
+      // }
 
-      if (payload.parentName && isValidObjectId(payload.parentName)) {
-        const ortu = await ParentModel.findById(payload.parentName).select(
-          'parentName'
-        );
-        if (!ortu) return response.notFound(res, 'Parent not found');
-        payload.parentName = ortu.parentName;
-      }
+      // if (payload.parentName && isValidObjectId(payload.parentName)) {
+      //   const ortu = await ParentModel.findById(payload.parentName).select(
+      //     'parentName'
+      //   );
+      //   if (!ortu) return response.notFound(res, 'Parent not found');
+      //   payload.parentName = ortu.parentName;
+      // }
 
       await studentDTO.validate(payload, { abortEarly: false });
 
