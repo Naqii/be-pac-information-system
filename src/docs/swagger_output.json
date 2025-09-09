@@ -294,6 +294,29 @@
         }
       }
     },
+    "/regions/{id}/regency": {
+      "get": {
+        "tags": [
+          "Regions"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/regions/{id}/district": {
       "get": {
         "tags": [

@@ -162,6 +162,13 @@ router.get(
   */
 );
 router.get(
+  '/regions/:id/regency',
+  regionController.getDistrict
+  /*
+    #swagger.tags = ['Regions']
+  */
+);
+router.get(
   '/regions/:id/district',
   regionController.getDistrict
   /*
