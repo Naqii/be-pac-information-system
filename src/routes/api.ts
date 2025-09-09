@@ -590,7 +590,7 @@ router.get(
   studentController.findAll
   /*
     #swagger.tags = ['Student']
-    #swagger.parameters['limit] = {
+    #swagger.parameters['limit'] = {
     in: 'query',
     type: 'number',
     default: 10,
@@ -603,10 +603,27 @@ router.get(
   */
 );
 router.get(
+  '/student/:id',
+  studentController.findOne
+  /*
+    #swagger.tags = ['Student']
+    */
+);
+router.get(
   '/student/:className',
   studentController.findByclassName
   /*
     #swagger.tags = ['Student']
+    #swagger.parameters['limit'] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
   */
 );
 router.put(

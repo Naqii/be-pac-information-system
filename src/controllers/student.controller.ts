@@ -61,6 +61,22 @@ export default {
       response.error(res, error, 'failed find all students');
     }
   },
+  async findOne(req: IReqUser, res: Response) {
+    try {
+      const { id } = req.params;
+
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed to find student');
+
+      const result = await StudentModel.findById(id);
+
+      if (!result) return response.notFound(res, 'student not found');
+
+      response.success(res, result, 'success find student');
+    } catch (error) {
+      response.error(res, error, 'failed find teacher data');
+    }
+  },
   async findByclassName(req: IReqUser, res: Response) {
     try {
       const { className } = req.params;
