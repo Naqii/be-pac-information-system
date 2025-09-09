@@ -163,7 +163,7 @@ router.get(
 );
 router.get(
   '/regions/:id/regency',
-  regionController.getDistrict
+  regionController.getRegency
   /*
     #swagger.tags = ['Regions']
   */
