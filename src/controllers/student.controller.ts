@@ -3,8 +3,8 @@ import StudentModel, { studentDTO, TypeStudent } from '../models/student.model';
 import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
-import ClassModel from '../models/class.model';
 import ParentModel from '../models/parent.model';
+import ClassModel from '../models/class.model';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -15,27 +15,16 @@ export default {
       } as TypeStudent;
       await studentDTO.validate(payload);
 
-      // const ortu = await ParentModel.findById(payload.parentName).select(
-      //   'parentName'
-      // );
-      // if (!ortu) return response.notFound(res, 'Parent not found');
-      // payload.parentName = ortu.parentName;
-
-      // const kelas = await ClassModel.findById(payload.className).select(
-      //   'className'
-      // );
-      // if (!kelas) return response.notFound(res, 'Class not found');
-      // payload.className = kelas.className;
-
-      // const existed = await StudentModel.findOne({
-      //   className: payload.className,
-      //   parentName: payload.parentName,
-      // });
+      const kelas = await ClassModel.findById(payload.className).select(
+        'className'
+      );
+      if (!kelas) return response.notFound(res, 'Class not found');
+      payload.className = kelas.className;
 
       const result = await StudentModel.create(payload);
-      return response.success(res, result, 'success to create attendance doc');
+      return response.success(res, result, 'success to create student');
     } catch (error) {
-      return response.error(res, error, 'failed to create attendance doc');
+      return response.error(res, error, 'failed to create student');
     }
   },
   async findAll(req: IReqUser, res: Response) {
@@ -81,6 +70,46 @@ export default {
     } catch (error) {
       response.error(res, error, 'failed to find all student');
     }
+
+    // try {
+    //   const buildQuery = (filter: any) => {
+    //     let query: FilterQuery<TypeStudent> = {};
+
+    //     if (filter.search) query.$text = { $search: filter.search };
+    //     if (filter.className)
+    //       query.className = new RegExp(filter.className, 'i');
+
+    //     return query;
+    //   };
+
+    //   const { limit = 10, page = 1, search } = req.query;
+
+    //   const query = buildQuery({
+    //     search,
+    //   });
+
+    //   const result = await StudentModel.find(query)
+    //     .limit(+limit)
+    //     .skip((+page - 1) * +limit)
+    //     .sort({ createdAt: -1 })
+    //     .lean()
+    //     .exec();
+
+    //   const count = await StudentModel.countDocuments(query);
+
+    //   response.pagination(
+    //     res,
+    //     result,
+    //     {
+    //       current: +page,
+    //       total: count,
+    //       totalPages: Math.ceil(count / +limit),
+    //     },
+    //     'success find all students'
+    //   );
+    // } catch (error) {
+    //   response.error(res, error, 'failed find all students');
+    // }
   },
   async findByOne(req: IReqUser, res: Response) {
     try {
@@ -110,21 +139,13 @@ export default {
         updateBy: req.user?.id,
       } as Partial<TypeStudent>;
 
-      // if (payload.className && isValidObjectId(payload.className)) {
-      //   const kelas = await ClassModel.findById(payload.className).select(
-      //     'className'
-      //   );
-      //   if (!kelas) return response.notFound(res, 'Class not found');
-      //   payload.className = kelas.className;
-      // }
-
-      // if (payload.parentName && isValidObjectId(payload.parentName)) {
-      //   const ortu = await ParentModel.findById(payload.parentName).select(
-      //     'parentName'
-      //   );
-      //   if (!ortu) return response.notFound(res, 'Parent not found');
-      //   payload.parentName = ortu.parentName;
-      // }
+      if (payload.className && isValidObjectId(payload.className)) {
+        const kelas = await ClassModel.findById(payload.className).select(
+          'className'
+        );
+        if (!kelas) return response.notFound(res, 'Class not found');
+        payload.className = kelas.className;
+      }
 
       await studentDTO.validate(payload, { abortEarly: false });
 
