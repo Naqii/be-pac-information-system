@@ -1417,6 +1417,13 @@
             }
           },
           {
+            "name": "className",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "default": 10,
@@ -1542,52 +1549,6 @@
             "bearerAuth": []
           }
         ]
-      }
-    },
-    "/student/{className}/className": {
-      "get": {
-        "tags": [
-          "Student"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "className",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "search",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "default": 10,
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "default": 1,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
       }
     },
     "/attendance": {

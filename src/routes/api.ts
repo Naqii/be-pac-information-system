@@ -609,23 +609,6 @@ router.get(
     #swagger.tags = ['Student']
     */
 );
-router.get(
-  '/student/:className/className',
-  studentController.findByclassName
-  /*
-    #swagger.tags = ['Student']
-    #swagger.parameters['limit'] = {
-    in: 'query',
-    type: 'number',
-    default: 10,
-    }
-    #swagger.parameters['page'] = {
-    in: 'query',
-    type: 'number',
-    default: 1,
-    }
-  */
-);
 router.put(
   '/student/:id',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
