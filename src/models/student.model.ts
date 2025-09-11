@@ -8,16 +8,16 @@ export const STUDENT_MODEL_NAME = 'Student';
 export const studentDTO = Yup.object({
   fullName: Yup.string().required(),
   noTlp: Yup.string().required(),
-  gender: Yup.string().required(),
   parentName: Yup.string().required(),
   className: Yup.string().required(),
+  gender: Yup.string().required(),
+  tanggalLahir: Yup.date().required(),
   location: Yup.object()
     .shape({
       region: Yup.number(),
       address: Yup.string(),
     })
     .required(),
-  startDate: Yup.string().required(),
 });
 
 export enum GenderStatus {
@@ -53,17 +53,21 @@ const StudentSchema = new Schema<Student>(
       type: Schema.Types.String,
       required: true,
     },
-    gender: {
-      type: Schema.Types.String,
-      enum: [GenderStatus.MALE, GenderStatus.FEMALE],
-      required: true,
-    },
     parentName: {
       type: Schema.Types.String,
       required: true,
     },
     className: {
       type: Schema.Types.String,
+      required: true,
+    },
+    gender: {
+      type: Schema.Types.String,
+      enum: [GenderStatus.MALE, GenderStatus.FEMALE],
+      required: true,
+    },
+    tanggalLahir: {
+      type: Schema.Types.Date,
       required: true,
     },
     location: {
@@ -75,10 +79,6 @@ const StudentSchema = new Schema<Student>(
           type: Schema.Types.String,
         },
       },
-    },
-    startDate: {
-      type: Schema.Types.String,
-      required: true,
     },
     createdBy: {
       type: Schema.Types.ObjectId,

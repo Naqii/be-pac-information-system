@@ -4,6 +4,7 @@ import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
 import ClassModel from '../models/class.model';
+import uploader from '../utils/uploader';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -123,6 +124,10 @@ export default {
         return response.notFound(res, 'failed to remove student');
 
       const result = await StudentModel.findByIdAndDelete(id, { new: true });
+
+      if (!result) return response.notFound(res, 'Student not found');
+
+      await uploader.remove(result?.picture);
 
       response.success(res, result, 'success to remove student');
     } catch (error) {
