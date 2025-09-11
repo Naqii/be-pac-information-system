@@ -610,7 +610,7 @@ router.get(
     */
 );
 router.get(
-  '/student/:className',
+  '/student/:className/className',
   studentController.findByclassName
   /*
     #swagger.tags = ['Student']

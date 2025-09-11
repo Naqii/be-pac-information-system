@@ -90,7 +90,7 @@ export default {
         return response.notFound(res, 'Class not found');
       }
 
-      const students = await StudentModel.find({ className: className });
+      const students = await StudentModel.find({ className });
 
       if (!students || students.length === 0) {
         return response.notFound(res, 'No students found for this class');
