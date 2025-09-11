@@ -1544,7 +1544,7 @@
         ]
       }
     },
-    "/student/{className}": {
+    "/student/{className}/className": {
       "get": {
         "tags": [
           "Student"
