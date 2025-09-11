@@ -11,7 +11,7 @@ export const studentDTO = Yup.object({
   parentName: Yup.string().required(),
   className: Yup.string().required(),
   gender: Yup.string().required(),
-  tanggalLahir: Yup.date().required(),
+  tanggalLahir: Yup.string().required(),
   location: Yup.object()
     .shape({
       region: Yup.number(),
@@ -67,7 +67,7 @@ const StudentSchema = new Schema<Student>(
       required: true,
     },
     tanggalLahir: {
-      type: Schema.Types.Date,
+      type: Schema.Types.String,
       required: true,
     },
     location: {
