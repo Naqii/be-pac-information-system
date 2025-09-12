@@ -87,24 +87,17 @@ export default {
       const { id } = req.params;
 
       if (!isValidObjectId(id))
-        return response.notFound(res, 'failed to update student');
+        return response.notFound(res, 'Invalid student ID');
 
-      const payload = {
-        ...req.body,
-        updateBy: req.user?.id,
-      } as Partial<TypeStudent>;
-
-      await studentDTO.validate(payload, { abortEarly: false });
-
-      const result = await StudentModel.findByIdAndUpdate(id, payload, {
+      const result = await StudentModel.findByIdAndUpdate(id, req.body, {
         new: true,
       });
 
-      if (!result) return response.notFound(res, 'data not found');
+      if (!result) return response.notFound(res, 'Student not found');
 
-      response.success(res, result, 'success to update student');
+      response.success(res, result, 'Student updated successfully');
     } catch (error) {
-      response.error(res, error, 'failed to update student');
+      response.error(res, error, 'Failed to update student');
     }
   },
   async remove(req: IReqUser, res: Response) {

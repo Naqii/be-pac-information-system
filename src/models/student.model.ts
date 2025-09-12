@@ -1,7 +1,5 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
-import { PARENT_MODEL_NAME } from './parent.model';
-import { CLASS_MODEL_NAME } from './class.model';
 
 export const STUDENT_MODEL_NAME = 'Student';
 
