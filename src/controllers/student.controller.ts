@@ -94,19 +94,10 @@ export default {
         updateBy: req.user?.id,
       } as Partial<TypeStudent>;
 
-      if (payload.className && isValidObjectId(payload.className)) {
-        const kelas = await ClassModel.findById(payload.className).select(
-          'className'
-        );
-        if (!kelas) return response.notFound(res, 'Class not found');
-        payload.className = kelas.className;
-      }
-
       await studentDTO.validate(payload, { abortEarly: false });
 
       const result = await StudentModel.findByIdAndUpdate(id, payload, {
         new: true,
-        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'data not found');
