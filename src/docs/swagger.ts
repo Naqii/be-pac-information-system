@@ -59,6 +59,7 @@ const doc = {
 
       CreateLearningRequest: {
         learningName: 'Tilawati 2',
+        totalPage: 200,
         teacherId: '689feb50a2aa01a0f645a3b1',
         description: 'Tilawati 2 full',
       },

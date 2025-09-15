@@ -8,6 +8,7 @@ const Schema = mongoose.Schema;
 
 export const learningDTO = Yup.object({
   learningName: Yup.string().required(),
+  totalPage: Yup.number().required(),
   description: Yup.string().required(),
 });
 
@@ -24,6 +25,10 @@ const LearningSchema = new Schema<Learning>(
   {
     learningName: {
       type: Schema.Types.String,
+      required: true,
+    },
+    totalPage: {
+      type: Schema.Types.Number,
       required: true,
     },
     teacherId: {

@@ -1947,6 +1947,10 @@
             "type": "string",
             "example": "Tilawati 2"
           },
+          "totalPage": {
+            "type": "number",
+            "example": 200
+          },
           "teacherId": {
             "type": "string",
             "example": "689feb50a2aa01a0f645a3b1"
