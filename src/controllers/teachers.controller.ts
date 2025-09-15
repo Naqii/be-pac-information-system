@@ -119,9 +119,9 @@ export default {
 
       const result = await TeacherModel.findByIdAndDelete(id, { new: true });
 
-      if (result?.picture) {
-        await uploader.remove(result.picture);
-      }
+      if (!result) return response.notFound(res, 'Teacher not found');
+
+      await uploader.remove(result?.picture);
 
       response.success(res, result, 'success to remove teachers data');
     } catch (error) {
