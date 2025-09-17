@@ -12,6 +12,7 @@ export default {
       response.error(res, error, 'failed to get region by city name');
     }
   },
+
   async getAllProvinces(req: Request, res: Response) {
     try {
       const result = await RegionModel.getAllProvinces();
@@ -20,6 +21,7 @@ export default {
       response.error(res, error, 'failed to get all provinces');
     }
   },
+
   async getProvince(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -29,6 +31,7 @@ export default {
       response.error(res, error, 'failed to get province');
     }
   },
+
   async getRegency(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -38,6 +41,7 @@ export default {
       response.error(res, error, 'failed to get regency');
     }
   },
+
   async getDistrict(req: Request, res: Response) {
     try {
       const { id } = req.params;
@@ -47,6 +51,7 @@ export default {
       response.error(res, error, 'failed to get district');
     }
   },
+
   async getVillage(req: Request, res: Response) {
     try {
       const { id } = req.params;

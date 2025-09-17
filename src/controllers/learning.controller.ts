@@ -18,6 +18,7 @@ export default {
       response.error(res, error, 'failed to create a learning data');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const buildQuery = (filter: any) => {
@@ -55,6 +56,7 @@ export default {
       response.error(res, error, 'failed find all learning data');
     }
   },
+
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -69,6 +71,7 @@ export default {
       response.error(res, error, 'failed to find learning data');
     }
   },
+
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -78,6 +81,7 @@ export default {
 
       const result = await LearningModel.findByIdAndUpdate(id, req.body, {
         new: true,
+        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'data not found');
@@ -87,6 +91,7 @@ export default {
       response.error(res, error, 'failed to update learning data');
     }
   },
+
   async remove(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

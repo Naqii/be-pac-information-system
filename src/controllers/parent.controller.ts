@@ -15,6 +15,7 @@ export default {
       response.error(res, error, 'failed to create a parent');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const buildQuery = (filter: any) => {
@@ -56,6 +57,7 @@ export default {
       response.error(res, error, 'failed find all parents');
     }
   },
+
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -75,6 +77,7 @@ export default {
       response.error(res, error, 'failed to find one an parent');
     }
   },
+
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -85,6 +88,7 @@ export default {
 
       const result = await ParentModel.findByIdAndUpdate(id, req.body, {
         new: true,
+        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'parent not found');
@@ -94,6 +98,7 @@ export default {
       response.error(res, error, 'failed to update an parent');
     }
   },
+
   async remove(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

@@ -40,6 +40,7 @@ export default {
       return response.error(res, error, 'failed to create attendance doc');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const buildQuery = (filter: any) => {
@@ -77,6 +78,7 @@ export default {
       );
     } catch (error) {}
   },
+
   async upsertAttendance(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -110,6 +112,7 @@ export default {
       return response.error(res, error, 'failed upsert attendance item');
     }
   },
+
   async recapByClassMonth(req: IReqUser, res: Response) {
     try {
       const { classId, month, year } = req.query as any;
@@ -163,6 +166,7 @@ export default {
       return response.error(res, error, 'failed get recap');
     }
   },
+
   async exportExcel(req: IReqUser, res: Response) {
     try {
       const { classId, month, year } = req.query as Record<string, string>;
@@ -290,6 +294,7 @@ export default {
       return response.error(res, error, 'failed to export excel');
     }
   },
+
   async removeItem(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

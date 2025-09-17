@@ -32,6 +32,7 @@ export default {
       response.error(res, error, 'failed to create a teacher data');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const buildQuery = (filter: any) => {
@@ -76,6 +77,7 @@ export default {
       response.error(res, error, 'failed find all teachers data');
     }
   },
+
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -92,6 +94,7 @@ export default {
       response.error(res, error, 'failed to find teachers data');
     }
   },
+
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -101,6 +104,7 @@ export default {
 
       const result = await TeacherModel.findByIdAndUpdate(id, req.body, {
         new: true,
+        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'data not found');
@@ -110,6 +114,7 @@ export default {
       response.error(res, error, 'failed to update teachers data');
     }
   },
+
   async remove(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -128,6 +133,7 @@ export default {
       response.error(res, error, 'failed to delete teachers data');
     }
   },
+
   async findOneBySlug(req: IReqUser, res: Response) {
     try {
       const { slug } = req.params;

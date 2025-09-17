@@ -5,6 +5,8 @@ import response from '../utils/response';
 import { Response } from 'express';
 import ClassModel from '../models/class.model';
 import uploader from '../utils/uploader';
+import path from 'path';
+import fs from 'fs';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -21,6 +23,7 @@ export default {
       return response.error(res, error, 'failed to create student');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const { limit = 10, page = 1, search, className } = req.query;
@@ -66,6 +69,7 @@ export default {
       response.error(res, error, 'failed to find students');
     }
   },
+
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -82,6 +86,7 @@ export default {
       response.error(res, error, 'failed find teacher data');
     }
   },
+
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -89,9 +94,34 @@ export default {
       if (!isValidObjectId(id))
         return response.notFound(res, 'Invalid student ID');
 
-      const result = await StudentModel.findByIdAndUpdate(id, req.body, {
-        new: true,
-      });
+      const student = await StudentModel.findById(id);
+      if (!student) return response.notFound(res, 'Student not found');
+
+      let newPicture = student.picture;
+
+      if (req.file) {
+        // If the new picture filename is different from the old one, replace and delete old
+        if (req.file.filename !== student.picture) {
+          const oldPicturePath = student.picture
+            ? path.join('uploads', student.picture)
+            : null;
+
+          if (oldPicturePath && fs.existsSync(oldPicturePath)) {
+            fs.unlinkSync(oldPicturePath);
+          }
+          newPicture = req.file.filename;
+        }
+        // If the new picture filename is the same as the old one, do nothing (keep old picture)
+      }
+
+      const result = await StudentModel.findByIdAndUpdate(
+        id,
+        { ...req.body, picture: newPicture },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
 
       if (!result) return response.notFound(res, 'Student not found');
 
@@ -100,6 +130,7 @@ export default {
       response.error(res, error, 'Failed to update student');
     }
   },
+
   async remove(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

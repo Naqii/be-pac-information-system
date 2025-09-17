@@ -28,6 +28,7 @@ export default {
       response.error(res, error, 'failed to create a class');
     }
   },
+
   async findAll(req: IReqUser, res: Response) {
     try {
       const buildQuery = (filter: any) => {
@@ -65,6 +66,7 @@ export default {
       response.error(res, error, 'failed to find all class');
     }
   },
+
   async findOne(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -81,6 +83,7 @@ export default {
       response.error(res, error, 'failed to find classs data');
     }
   },
+
   async update(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -90,6 +93,7 @@ export default {
 
       const result = await ClassModel.findByIdAndUpdate(id, req.body, {
         new: true,
+        runValidators: true,
       });
 
       if (!result) return response.notFound(res, 'data not found');
@@ -99,6 +103,7 @@ export default {
       response.error(res, error, 'failed to update class');
     }
   },
+
   async remove(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
@@ -113,6 +118,7 @@ export default {
       response.error(res, error, 'failed to delete class');
     }
   },
+
   async findOneBySlug(req: IReqUser, res: Response) {
     try {
       const { slug } = req.params;
