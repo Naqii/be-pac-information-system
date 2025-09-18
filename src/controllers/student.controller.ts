@@ -94,34 +94,10 @@ export default {
       if (!isValidObjectId(id))
         return response.notFound(res, 'Invalid student ID');
 
-      const student = await StudentModel.findById(id);
-      if (!student) return response.notFound(res, 'Student not found');
-
-      let newPicture = student.picture;
-
-      if (req.file) {
-        // If the new picture filename is different from the old one, replace and delete old
-        if (req.file.filename !== student.picture) {
-          const oldPicturePath = student.picture
-            ? path.join('uploads', student.picture)
-            : null;
-
-          if (oldPicturePath && fs.existsSync(oldPicturePath)) {
-            fs.unlinkSync(oldPicturePath);
-          }
-          newPicture = req.file.filename;
-        }
-        // If the new picture filename is the same as the old one, do nothing (keep old picture)
-      }
-
-      const result = await StudentModel.findByIdAndUpdate(
-        id,
-        { ...req.body, picture: newPicture },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+      const result = await StudentModel.findByIdAndUpdate(id, req.body, {
+        new: true,
+        runValidators: true,
+      });
 
       if (!result) return response.notFound(res, 'Student not found');
 
