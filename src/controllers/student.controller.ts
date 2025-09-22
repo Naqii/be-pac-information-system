@@ -5,8 +5,6 @@ import response from '../utils/response';
 import { Response } from 'express';
 import ClassModel from '../models/class.model';
 import uploader from '../utils/uploader';
-import path from 'path';
-import fs from 'fs';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -50,10 +48,6 @@ export default {
         .exec();
 
       const count = await StudentModel.countDocuments(query);
-
-      if (className && (!result || result.length === 0)) {
-        return response.notFound(res, 'No students found for this class');
-      }
 
       response.pagination(
         res,

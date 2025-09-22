@@ -7,9 +7,10 @@ import AttendanceModel, {
 import { IReqUser } from '../utils/interface';
 import { Response } from 'express';
 import response from '../utils/response';
-import { FilterQuery } from 'mongoose';
+import { FilterQuery, isValidObjectId } from 'mongoose';
 import ExcelJS from 'exceljs';
 import StudentModel from '../models/student.model';
+import ClassModel from '../models/class.model';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -43,19 +44,19 @@ export default {
 
   async findAll(req: IReqUser, res: Response) {
     try {
-      const buildQuery = (filter: any) => {
-        let query: FilterQuery<TypeAttendance> = {};
+      const { limit = 10, page = 1, search, className } = req.query;
 
-        if (filter.search) query.$text = { $search: filter.search };
+      let query: FilterQuery<TypeAttendance> = {};
 
-        return query;
-      };
+      if (className && isValidObjectId(className)) {
+        const kelas = await ClassModel.findById(className).select('className');
+        if (!kelas) {
+          return response.notFound(res, 'Class not found');
+        }
+        query.className = className;
+      }
 
-      const { limit = 10, page = 1, search } = req.query;
-
-      const query = buildQuery({
-        search,
-      });
+      if (search) query.$text = { $search: search as string };
 
       const result = await AttendanceModel.find(query)
         .limit(+limit)
@@ -76,7 +77,9 @@ export default {
         },
         'Successfully retrieved all orders'
       );
-    } catch (error) {}
+    } catch (error) {
+      response.error(res, error, 'failed to find attendance');
+    }
   },
 
   async upsertAttendance(req: IReqUser, res: Response) {
@@ -115,9 +118,9 @@ export default {
 
   async recapByClassMonth(req: IReqUser, res: Response) {
     try {
-      const { classId, month, year } = req.query as any;
-      if (!classId) {
-        return response.notFound(res, 'classId is required');
+      const { className, month, year } = req.query as any;
+      if (!className) {
+        return response.notFound(res, 'className is required');
       } else if (!month) {
         return response.notFound(res, 'month is required');
       } else if (!year) {
@@ -131,18 +134,13 @@ export default {
       const end = new Date(y, m + 1, 1);
 
       //data yang diambil masih akan diedit jadi gunakan lean() outputnya plain object bukan instance
-      const docs = await AttendanceModel.find({ classId: classId }).lean();
+      const docs = await AttendanceModel.find({ className: className }).lean();
       //menghitung jumlah hari dalam satu bulan
       const daysInMonth = new Date(y, m + 1, 0).getDate();
 
       //membuat struktur rekapnya
       const rows = docs.map((d) => {
         const row: any = { name: d.fullName, dates: {} };
-
-        //set default kosong untuk semua hari
-        for (let i = 1; i <= daysInMonth; i++) {
-          row.dates[i] = { status: '', description: '' };
-        }
 
         //pengisian presensi yang ada
         (d.attendance || []).forEach((a: any) => {
@@ -169,8 +167,8 @@ export default {
 
   async exportExcel(req: IReqUser, res: Response) {
     try {
-      const { classId, month, year } = req.query as Record<string, string>;
-      if (!classId) return response.notFound(res, 'classId is required');
+      const { className, month, year } = req.query as Record<string, string>;
+      if (!className) return response.notFound(res, 'className is required');
       if (!month) return response.notFound(res, 'month is required');
       if (!year) return response.notFound(res, 'year is required');
 
@@ -180,7 +178,10 @@ export default {
       const end = new Date(y, m + 1, 1);
       const monthName = start.toLocaleString('id-ID', { month: 'long' });
 
-      const docs = await AttendanceModel.find({ classId }).lean();
+      const docs = await AttendanceModel.find({ className }).lean();
+
+      const namaKelas =
+        await ClassModel.findById(className).select('className');
 
       const daysInMonth = new Date(y, m + 1, 0).getDate();
 
@@ -278,7 +279,7 @@ export default {
         });
       });
 
-      const fileName = `rekap-absensi-${classId}-${year}-${month}.xlsx`;
+      const fileName = `rekap-absensi-${namaKelas?.className}-${year}-${month}.xlsx`;
       res.setHeader(
         'Content-Type',
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
