@@ -296,6 +296,21 @@ export default {
     }
   },
 
+  async rmFromAttendance(req: IReqUser, res: Response) {
+    try {
+      const { id } = req.params;
+
+      if (!isValidObjectId(id))
+        return response.notFound(res, 'failed to remove class');
+
+      const result = await AttendanceModel.findByIdAndDelete(id, { new: true });
+
+      response.success(res, result, 'success to remove class');
+    } catch (error) {
+      response.error(res, error, 'failed to delete class');
+    }
+  },
+
   async removeItem(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;

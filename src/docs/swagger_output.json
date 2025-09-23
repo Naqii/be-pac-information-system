@@ -1606,6 +1606,13 @@
             }
           },
           {
+            "name": "className",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "default": 10,
@@ -1694,7 +1701,7 @@
             }
           },
           {
-            "name": "classId",
+            "name": "className",
             "in": "query",
             "default": "68a6b088dc1aa32d7aab3c57",
             "schema": {
@@ -1748,7 +1755,7 @@
             }
           },
           {
-            "name": "classId",
+            "name": "className",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1764,6 +1771,41 @@
           {
             "name": "year",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/attendance/{id}": {
+      "delete": {
+        "tags": [
+          "Attendance"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
             "schema": {
               "type": "string"
             }

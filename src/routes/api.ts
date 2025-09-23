@@ -699,7 +699,7 @@ router.get(
     #swagger.security = [{
       "bearerAuth": []
     }]
-    #swagger.parameters['classId] = {
+    #swagger.parameters['className'] = {
     in: 'query',
     type: 'string',
     default: '68a6b088dc1aa32d7aab3c57',
@@ -720,6 +720,17 @@ router.get(
   '/attendance/export',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
   attendanceController.exportExcel
+  /*
+    #swagger.tags = ['Attendance']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+router.delete(
+  '/attendance/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  attendanceController.rmFromAttendance
   /*
     #swagger.tags = ['Attendance']
     #swagger.security = [{
