@@ -58,7 +58,6 @@ const StudentSchema = new Schema<Student>(
     },
     className: {
       type: Schema.Types.String,
-      ref: CLASS_MODEL_NAME,
       required: true,
     },
     gender: {
