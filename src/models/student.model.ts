@@ -30,7 +30,7 @@ export interface Student
   extends Omit<TypeStudent, 'parentName' | 'createdBy' | 'className'> {
   createdBy: ObjectId;
   parentName: String;
-  className: String;
+  className: ObjectId;
   picture: string;
   createdAt: string;
 }
@@ -57,7 +57,7 @@ const StudentSchema = new Schema<Student>(
       required: true,
     },
     className: {
-      type: Schema.Types.ObjectId,
+      type: Schema.Types.String,
       ref: CLASS_MODEL_NAME,
       required: true,
     },

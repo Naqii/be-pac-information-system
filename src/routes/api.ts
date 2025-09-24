@@ -74,6 +74,7 @@ router.post(
     aclMiddleware([ROLES.ADMIN, ROLES.KK]),
     mediaMiddleware.single('file'),
   ],
+  //catatan: ukuran gambar max 1200px dan kualitas 80
   resizeSingleImage(1200, 80),
   mediaController.singleMedia
   /*
