@@ -21,24 +21,30 @@ export default {
       } as TypeAttendance;
       await attendanceDTO.validate(payload);
 
-      const user = await StudentModel.findById(payload.fullName).select(
-        'fullName'
-      );
-      if (!user) return response.notFound(res, 'Student not found');
-
-      payload.fullName = user.fullName;
+      const student = await StudentModel.findById(payload.fullName)
+        .select('fullName className')
+        .lean();
+      if (!student) {
+        return response.notFound(res, 'Student not found');
+      }
 
       const existed = await AttendanceModel.findOne({
-        name: payload.fullName,
-        class: payload.className,
+        fullName: student.fullName,
+        className: student.className,
       });
-      if (existed)
-        return response.conflict(res, 'attendance doc already existed');
+      if (existed) {
+        return response.conflict(res, 'Attendance doc already existed');
+      }
 
-      const result = await AttendanceModel.create(payload);
-      return response.success(res, result, 'success to create attendance doc');
+      const result = await AttendanceModel.create({
+        fullName: student.fullName,
+        className: student.className,
+        createdBy: req.user?.id,
+        attendance: [],
+      });
+      return response.success(res, result, 'Success to create attendance doc');
     } catch (error) {
-      return response.error(res, error, 'failed to create attendance doc');
+      return response.error(res, error, 'Failed to create attendance doc');
     }
   },
 

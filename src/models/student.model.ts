@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
+import { CLASS_MODEL_NAME } from './class.model';
 
 export const STUDENT_MODEL_NAME = 'Student';
 
@@ -56,7 +57,8 @@ const StudentSchema = new Schema<Student>(
       required: true,
     },
     className: {
-      type: Schema.Types.String,
+      type: Schema.Types.ObjectId,
+      ref: CLASS_MODEL_NAME,
       required: true,
     },
     gender: {
