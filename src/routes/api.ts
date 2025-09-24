@@ -13,6 +13,10 @@ import classController from '../controllers/class.controller';
 import parentController from '../controllers/parent.controller';
 import studentController from '../controllers/student.controller';
 import attendanceController from '../controllers/attendance.controller';
+import {
+  resizeMultipleImages,
+  resizeSingleImage,
+} from '../middleware/resize.middleware';
 
 const router = express.Router();
 
@@ -70,6 +74,7 @@ router.post(
     aclMiddleware([ROLES.ADMIN, ROLES.KK]),
     mediaMiddleware.single('file'),
   ],
+  resizeSingleImage(1200, 80),
   mediaController.singleMedia
   /*
     #swagger.tags = ['Media']
@@ -101,6 +106,7 @@ router.post(
     aclMiddleware([ROLES.ADMIN, ROLES.KK]),
     mediaMiddleware.multiple('files'),
   ],
+  resizeMultipleImages(1200, 80),
   mediaController.multipleMedia
   /*
     #swagger.tags = ['Media']
