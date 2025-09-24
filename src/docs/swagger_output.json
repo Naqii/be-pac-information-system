@@ -2142,27 +2142,6 @@
           "fullName": {
             "type": "string",
             "example": "68a5362e025235682acf72a8"
-          },
-          "className": {
-            "type": "string",
-            "example": "68a44b81a3997dce4bcd467d"
-          },
-          "attendance": {
-            "type": "object",
-            "properties": {
-              "date": {
-                "type": "string",
-                "example": "2024-12-12"
-              },
-              "status": {
-                "type": "string",
-                "example": "hadir"
-              },
-              "description": {
-                "type": "string",
-                "example": "Pengajian Umum"
-              }
-            }
           }
         },
         "xml": {

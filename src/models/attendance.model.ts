@@ -48,7 +48,8 @@ const AttendanceSchema = new Schema<Attendance>(
       required: true,
     },
     className: {
-      type: Schema.Types.String,
+      type: Schema.Types.ObjectId,
+      ref: CLASS_MODEL_NAME,
       required: true,
     },
     attendance: {

@@ -104,12 +104,6 @@ const doc = {
 
       CreateAttendanceRequest: {
         fullName: '68a5362e025235682acf72a8',
-        className: '68a44b81a3997dce4bcd467d',
-        attendance: {
-          date: '2024-12-12',
-          status: 'hadir',
-          description: 'Pengajian Umum',
-        },
       },
 
       PatchAttendanceRequest: {
