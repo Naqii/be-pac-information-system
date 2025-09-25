@@ -56,7 +56,7 @@ const AttendanceSchema = new Schema<Attendance>(
       type: [
         {
           date: {
-            type: Schema.Types.Date,
+            type: Schema.Types.String,
             required: true,
           },
           status: {
