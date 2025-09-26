@@ -680,8 +680,8 @@ router.get(
     }
   */
 );
-router.patch(
-  '/attendance/:id/attendance',
+router.put(
+  '/attendance/:id',
   [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
   attendanceController.upsertAttendance
   /*

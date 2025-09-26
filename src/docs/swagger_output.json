@@ -1636,8 +1636,8 @@
         }
       }
     },
-    "/attendance/{id}/attendance": {
-      "patch": {
+    "/attendance/{id}": {
+      "put": {
         "tags": [
           "Attendance"
         ],
@@ -1684,6 +1684,39 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Attendance"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/attendance/recap": {
@@ -1771,41 +1804,6 @@
           {
             "name": "year",
             "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/attendance/{id}": {
-      "delete": {
-        "tags": [
-          "Attendance"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
             "schema": {
               "type": "string"
             }
