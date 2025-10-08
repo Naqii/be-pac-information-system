@@ -20,7 +20,6 @@ export const attendanceItemDTO = Yup.object({
   status: Yup.mixed<AttendanceStatus>()
     .oneOf(Object.values(AttendanceStatus))
     .required(),
-  description: Yup.string().required(),
 });
 
 export type TypeAttendance = Yup.InferType<typeof attendanceDTO>;
@@ -28,7 +27,6 @@ export type TypeAttendance = Yup.InferType<typeof attendanceDTO>;
 export type TypeStudentAttendance = {
   date: string;
   status: string;
-  description: string;
 };
 
 export interface Attendance
@@ -63,10 +61,6 @@ const AttendanceSchema = new Schema<Attendance>(
             type: Schema.Types.String,
             enum: [AttendanceStatus.H, AttendanceStatus.I, AttendanceStatus.A],
             default: 'absen',
-          },
-          description: {
-            type: Schema.Types.String,
-            default: 'Pengajian Umum',
           },
         },
       ],

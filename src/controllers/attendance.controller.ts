@@ -100,7 +100,6 @@ export default {
           {
             $set: {
               'attendance.$.status': newAttendance.status,
-              'attendance.$.description': newAttendance.description || '',
             },
           },
           {
@@ -249,17 +248,6 @@ export default {
 
         worksheet.addRow(row);
       });
-
-      // Add description row
-      const descriptionRow: Record<string, any> = { name: 'Keterangan' };
-      for (let i = 1; i <= daysInMonth; i++) {
-        const desc =
-          docs[0]?.attendance?.find(
-            (a: any) => new Date(a.date).getDate() === i
-          )?.description || '';
-        descriptionRow[`d${i}`] = desc;
-      }
-      worksheet.addRow(descriptionRow);
 
       // Style all cells
       worksheet.eachRow((row, rowNumber) => {
