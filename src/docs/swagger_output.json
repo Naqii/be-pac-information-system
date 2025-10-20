@@ -2622,6 +2622,14 @@
             "type": "string",
             "example": "68a44b81a3997dce4bcd467d"
           },
+          "pc": {
+            "type": "string",
+            "example": "pcId"
+          },
+          "pac": {
+            "type": "string",
+            "example": "pacId"
+          },
           "startDate": {
             "type": "string",
             "example": "2024-12-12"

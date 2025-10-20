@@ -95,6 +95,8 @@ const doc = {
         gender: 'male',
         parentName: '68a4800ca398cedf12d93f62',
         className: '68a44b81a3997dce4bcd467d',
+        pc: 'pcId',
+        pac: 'pacId',
         startDate: '2024-12-12',
         location: {
           region: 3374070003,
