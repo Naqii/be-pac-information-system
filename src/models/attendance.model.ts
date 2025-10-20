@@ -17,21 +17,16 @@ export enum AttendanceStatus {
 
 export const attendanceItemDTO = Yup.object({
   date: Yup.date().required(),
-  status: Yup.mixed<AttendanceStatus>()
-    .oneOf(Object.values(AttendanceStatus))
-    .required(),
 });
 
 export type TypeAttendance = Yup.InferType<typeof attendanceDTO>;
 
 export type TypeStudentAttendance = {
   date: string;
-  status: string;
 };
 
 export interface Attendance
-  extends Omit<TypeAttendance, 'createdBy' | 'className' | 'fullName'> {
-  fullName: String;
+  extends Omit<TypeAttendance, 'createdBy' | 'className'> {
   createdBy: ObjectId;
   className: ObjectId;
   attendance: TypeStudentAttendance[];
@@ -56,11 +51,6 @@ const AttendanceSchema = new Schema<Attendance>(
           date: {
             type: Schema.Types.String,
             required: true,
-          },
-          status: {
-            type: Schema.Types.String,
-            enum: [AttendanceStatus.H, AttendanceStatus.I, AttendanceStatus.A],
-            default: 'absen',
           },
         },
       ],

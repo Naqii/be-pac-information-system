@@ -98,11 +98,6 @@ export default {
         (await AttendanceModel.findOneAndUpdate(
           { _id: id, 'attendance.date': newAttendance.date },
           {
-            $set: {
-              'attendance.$.status': newAttendance.status,
-            },
-          },
-          {
             new: true,
           }
         )) ||
@@ -309,7 +304,6 @@ export default {
     try {
       const { id } = req.params;
       const { date } = req.body as any;
-      console.log(date);
       if (!date) return response.notFound(res, 'date is required');
 
       const result = await AttendanceModel.findByIdAndUpdate(

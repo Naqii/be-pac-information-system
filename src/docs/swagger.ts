@@ -115,6 +115,30 @@ const doc = {
       RemoveAttendanceRequest: {
         date: '2025-01-11',
       },
+
+      CreatePACRequest: {
+        pacName: 'Kramas 2',
+        location: {
+          region: 3374070003,
+          address: 'Jl Mulawarmman Selatan',
+        },
+      },
+
+      CreatePCRequest: {
+        pcName: 'PC Banyumanik',
+        location: {
+          region: 3374070003,
+          address: 'Jl Mulawarmman Selatan',
+        },
+      },
+
+      CreatePACListRequest: {
+        pacId: '68a44b81a3997dce4bcd467d',
+      },
+
+      RemovePACListRequest: {
+        pacId: '68a44b81a3997dce4bcd467d',
+      },
     },
   },
 };

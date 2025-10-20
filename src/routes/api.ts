@@ -17,6 +17,8 @@ import {
   resizeMultipleImages,
   resizeSingleImage,
 } from '../middleware/resize.middleware';
+import pacController from '../controllers/pac.controller';
+import pcController from '../controllers/pc.controller';
 
 const router = express.Router();
 
@@ -194,6 +196,196 @@ router.get(
   regionController.findByCity
   /*
     #swagger.tags = ['Regions']
+  */
+);
+
+//PAC Schema
+router.post(
+  '/pac',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pacController.create
+  /*
+    #swagger.tags = ['PAC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreatePACRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/pac',
+  pacController.findAll
+  /*
+    #swagger.tags = ['PAC']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/pac/:id',
+  pacController.findOne
+  /*
+    #swagger.tags = ['PAC']
+  */
+);
+router.put(
+  '/pac/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pacController.update
+  /*
+    #swagger.tags = ['PAC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreatePACRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/pac/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pacController.remove
+  /*
+    #swagger.tags = ['PAC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+router.get(
+  '/pac/:slug/slug',
+  pacController.findOneBySlug
+  /*
+    #swagger.tags = ['PAC']
+  */
+);
+
+//PC Schema
+router.post(
+  '/pc',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pcController.create
+  /*
+    #swagger.tags = ['PC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreatePCRequest"
+      }
+    }
+  */
+);
+router.get(
+  '/pc',
+  pcController.findAll
+  /*
+    #swagger.tags = ['PC']
+    #swagger.parameters['limit] = {
+    in: 'query',
+    type: 'number',
+    default: 10,
+    }
+    #swagger.parameters['page'] = {
+    in: 'query',
+    type: 'number',
+    default: 1,
+    }
+  */
+);
+router.get(
+  '/pc/:id',
+  pcController.findOne
+  /*
+    #swagger.tags = ['PC']
+  */
+);
+router.put(
+  '/pc/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pcController.update
+  /*
+    #swagger.tags = ['PC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreatePCRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/pc/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pcController.remove
+  /*
+    #swagger.tags = ['PC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+  */
+);
+router.get(
+  '/pc/:slug/slug',
+  pcController.findOneBySlug
+  /*
+    #swagger.tags = ['PC']
+  */
+);
+router.put(
+  '/pcdata/:id',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pcController.upsertPAC
+  /*
+    #swagger.tags = ['PC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/CreatePACListRequest"
+      }
+    }
+  */
+);
+router.delete(
+  '/pc/:id/pac',
+  [authMiddleware, aclMiddleware([ROLES.ADMIN, ROLES.MANAGER])],
+  pcController.removeItemPAC
+  /*
+    #swagger.tags = ['PC']
+    #swagger.security = [{
+      "bearerAuth": []
+    }]
+    #swagger.requestBody = {
+      required: true,
+      schema: {
+        $ref: "#/components/schemas/RemovePACListRequest"
+      }
+    }
   */
 );
 
