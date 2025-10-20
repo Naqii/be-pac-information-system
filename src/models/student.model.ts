@@ -1,6 +1,6 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
-import { CLASS_MODEL_NAME } from './class.model';
+import { USER_MODEL_NAME } from './user.model';
 
 export const STUDENT_MODEL_NAME = 'Student';
 
@@ -9,6 +9,8 @@ export const studentDTO = Yup.object({
   noTlp: Yup.string().required(),
   parentName: Yup.string().required(),
   className: Yup.string().required(),
+  pc: Yup.string().required(),
+  pac: Yup.string().required(),
   gender: Yup.string().required(),
   tanggalLahir: Yup.string().required(),
   location: Yup.object()
@@ -29,7 +31,7 @@ export type TypeStudent = Yup.InferType<typeof studentDTO>;
 export interface Student
   extends Omit<TypeStudent, 'parentName' | 'createdBy' | 'className'> {
   createdBy: ObjectId;
-  parentName: String;
+  parentName: ObjectId;
   className: ObjectId;
   picture: string;
   createdAt: string;
@@ -60,6 +62,14 @@ const StudentSchema = new Schema<Student>(
       type: Schema.Types.String,
       required: true,
     },
+    pc: {
+      type: Schema.Types.String,
+      required: true,
+    },
+    pac: {
+      type: Schema.Types.String,
+      required: true,
+    },
     gender: {
       type: Schema.Types.String,
       enum: [GenderStatus.MALE, GenderStatus.FEMALE],
@@ -82,7 +92,7 @@ const StudentSchema = new Schema<Student>(
     createdBy: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: USER_MODEL_NAME,
     },
   },
   {

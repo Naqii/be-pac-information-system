@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
 import { TEACHER_MODEL_NAME } from './teachers.model';
+import { USER_MODEL_NAME } from './user.model';
 
 export const LEARNING_MODEL_NAME = 'Learning';
 
@@ -41,9 +42,9 @@ const LearningSchema = new Schema<Learning>(
       required: true,
     },
     createdBy: {
-      type: Schema.Types.String,
+      type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: USER_MODEL_NAME,
     },
   },
   {

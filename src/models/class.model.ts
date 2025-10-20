@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
 import { TEACHER_MODEL_NAME } from './teachers.model';
+import { USER_MODEL_NAME } from './user.model';
 
 export const CLASS_MODEL_NAME = 'Class';
 
@@ -39,7 +40,7 @@ const ClassSchema = new Schema<Class>(
     createdBy: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: USER_MODEL_NAME,
     },
   },
   {

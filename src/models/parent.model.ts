@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
+import { USER_MODEL_NAME } from './user.model';
 
 export const PARENT_MODEL_NAME = 'Parent';
 
@@ -49,11 +50,6 @@ const ParentSchema = new Schema<Parent>(
       type: Schema.Types.String,
       required: true,
     },
-    createdBy: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
-    },
     location: {
       type: {
         region: {
@@ -63,6 +59,11 @@ const ParentSchema = new Schema<Parent>(
           type: Schema.Types.String,
         },
       },
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: USER_MODEL_NAME,
     },
   },
   {

@@ -1,5 +1,6 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
+import { USER_MODEL_NAME } from './user.model';
 
 export const TEACHER_MODEL_NAME = 'Teacher';
 
@@ -64,14 +65,14 @@ const TeacherSchema = new Schema<Teacher>(
       type: Schema.Types.String,
       required: true,
     },
-    createdBy: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
-    },
     slug: {
       type: Schema.Types.String,
       unique: true,
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: USER_MODEL_NAME,
     },
   },
   {

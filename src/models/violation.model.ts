@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from 'mongoose';
 import * as Yup from 'yup';
 import { TEACHER_MODEL_NAME } from './teachers.model';
+import { USER_MODEL_NAME } from './user.model';
 
 //Pelanggaran
 export const VIOLATION_MODEL_NAME = 'Violation';
@@ -44,7 +45,7 @@ const ViolationSchema = new Schema<Violation>(
     createdBy: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: USER_MODEL_NAME,
     },
   },
   {
