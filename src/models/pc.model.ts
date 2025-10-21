@@ -19,12 +19,14 @@ export const pcDTO = Yup.object({
 
 export const pcItemDTO = Yup.object({
   pacId: Yup.string().required(),
+  pacNames: Yup.string(),
 });
 
 export type TypePC = Yup.InferType<typeof pcDTO>;
 
 export type TypeItemPAC = {
   pacId: string;
+  pacNames: string;
 };
 
 export interface PC extends Omit<TypePC, 'createdBy'> {
@@ -57,6 +59,10 @@ const pcSchema = new Schema<PC>(
       type: [
         {
           pacId: {
+            type: Schema.Types.String,
+            require: true,
+          },
+          pacNames: {
             type: Schema.Types.String,
             require: true,
           },

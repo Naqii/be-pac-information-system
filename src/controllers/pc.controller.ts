@@ -9,6 +9,7 @@ import { formatSlug } from '../utils/formatSlug';
 import { IReqUser } from '../utils/interface';
 import response from '../utils/response';
 import { Response } from 'express';
+import pacModel from '../models/pac.model';
 
 export default {
   async create(req: IReqUser, res: Response) {
@@ -158,23 +159,44 @@ export default {
   async upsertPAC(req: IReqUser, res: Response) {
     try {
       const { id } = req.params;
+      if (!isValidObjectId(id)) return response.notFound(res, 'invalid PC id');
+
       const newDataPAC = req.body as TypeItemPAC;
+      if (!newDataPAC?.pacId || !isValidObjectId(newDataPAC.pacId))
+        return response.notFound(res, 'pacId is required or invalid');
+
       await pcItemDTO.validate(newDataPAC);
 
-      let updated =
-        (await pcModel.findOneAndUpdate(
-          { _id: id, 'pacList.pacId': newDataPAC.pacId },
-          {
-            new: true,
-          }
-        )) ||
-        (await pcModel.findByIdAndUpdate(
+      const pacDoc = await pacModel
+        .findById(newDataPAC.pacId)
+        .select('pacName')
+        .lean();
+      if (!pacDoc) return response.notFound(res, 'pac not found');
+
+      if (!newDataPAC.pacNames) newDataPAC.pacNames = pacDoc.pacName;
+
+      const existingItem = await pcModel.findOne({
+        _id: id,
+        'pacList.pacId': newDataPAC.pacId,
+      });
+
+      if (existingItem) {
+        return response.error(res, null, 'pacId already exists in the list');
+      }
+
+      let updated = await pcModel.findOneAndUpdate(
+        { _id: id, 'pacList.pacId': newDataPAC.pacId },
+        { $set: { 'pacList.$': newDataPAC } },
+        { new: true, runValidators: true }
+      );
+
+      if (!updated) {
+        updated = await pcModel.findByIdAndUpdate(
           id,
           { $push: { pacList: newDataPAC } },
-          {
-            new: true,
-          }
-        ));
+          { new: true, runValidators: true }
+        );
+      }
 
       if (!updated) return response.notFound(res, 'PC doc not found');
       return response.success(res, updated, 'upsert PAC item');
