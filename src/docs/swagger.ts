@@ -121,7 +121,7 @@ const doc = {
       CreatePACRequest: {
         pacName: 'Kramas 2',
         location: {
-          region: 3374070003,
+          village: 3374070003,
           address: 'Jl Mulawarmman Selatan',
         },
       },

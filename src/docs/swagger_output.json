@@ -2706,7 +2706,7 @@
           "location": {
             "type": "object",
             "properties": {
-              "region": {
+              "village": {
                 "type": "number",
                 "example": 3374070003
               },
